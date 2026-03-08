@@ -7,17 +7,7 @@ A shared C library for decoding Qualcomm modem diagnostic log packets (LTE and N
 ### Prerequisites
 
 - GCC with shared library support
-- [asn1c](https://github.com/vlm/asn1c) — check out the `velichkov_s1ap_plus_option_group` branch and install it
-
-```sh
-git clone https://github.com/vlm/asn1c.git
-cd asn1c
-git checkout velichkov_s1ap_plus_option_group
-autoreconf -iv
-./configure
-make
-sudo make install
-```
+- [asn1c velichkov_s1ap_plus_option_group branch](https://github.com/brchiu/asn1c/tree/velichkov_s1ap_plus_option_group)
 
 ### Compile the library
 
