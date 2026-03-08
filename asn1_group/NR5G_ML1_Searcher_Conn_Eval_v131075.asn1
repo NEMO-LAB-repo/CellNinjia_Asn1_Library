@@ -1,0 +1,37 @@
+NR5G-ML1-Searcher-Conn-Eval-v131075 DEFINITIONS ::= BEGIN
+
+NR5G-ML1-Searcher-Conn-Eval-v131075-S-H ::= SEQUENCE 
+{
+    version      INTEGER(0..4294967295),
+    skip0        BIT STRING(SIZE(11)),
+    system-frame-number INTEGER(0..1023),
+    subframe-number INTEGER(0..15),
+    slot-number  INTEGER(0..31),
+    skip1        BIT STRING(SIZE(2)),
+
+    num-cells         INTEGER(0..255),
+    skip2        OCTET STRING(SIZE(3))
+}
+
+NR5G-ML1-Searcher-Conn-Eval-v131075-Cell-Info ::= SEQUENCE
+{
+    skip0         BIT STRING(SIZE(14)),
+    state         STATE,
+
+    meas-id        INTEGER(0..255),
+    num-reports-sent INTEGER(0..255),
+    cell-id       INTEGER(0..65535),
+    ttt-remaining INTEGER(0..65535)
+}
+
+STATE ::= ENUMERATED
+{
+    entering (0),
+    entered (1),
+    leaving (2),
+    left (3)
+}
+
+
+
+END

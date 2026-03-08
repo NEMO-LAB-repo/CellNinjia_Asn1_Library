@@ -1,0 +1,48 @@
+NR5G-L2-UL-TB-v196616 DEFINITIONS ::= BEGIN
+
+-- S-H --
+NR5G-L2-UL-TB-S-H-v196616 ::= SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    num-tti                     INTEGER(0..255),
+    skip1                       OCTET STRING(SIZE(3))
+}
+
+-- TTI-H --
+NR5G-L2-UL-TB-TTI-H-v196616 ::= SEQUENCE
+{
+    slot-number              INTEGER(0..255),
+    skip1                   BIT STRING(SIZE(14)),
+    fn                     INTEGER(0..1023),
+    skip2                   BIT STRING(SIZE(4)),
+    num-tb                INTEGER(0..15),
+    skip3                   OCTET STRING(SIZE(3))
+}
+
+-- TB --
+NR5G-L2-UL-TB-Content-v196616 ::= SEQUENCE
+{
+    skip0                   BIT STRING(SIZE(9)),
+    harq                INTEGER(0..15),
+    numerology            Numerology,
+    skip1                   OCTET STRING(SIZE(2)),
+
+    grant-size         INTEGER(0..4294967295),
+    bytes-build       INTEGER(0..4294967295),
+    skip2                   OCTET STRING(SIZE(8)),
+
+    skip3                  BIT STRING(SIZE(2)),
+    mce-length         INTEGER(0..63),
+    skip7                   OCTET STRING(SIZE(3))
+}
+Numerology ::=ENUMERATED
+{
+    n-15khz                    (0),        
+    n-30khz                       (1),
+    n-60khz                    (2),
+    n-120khz                   (3),
+    n-240khz                   (4),
+    n-480khz                   (5),
+    n-960khz                   (6)
+}
+END

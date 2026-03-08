@@ -1,0 +1,121 @@
+LTE-ML1-CA-Metrics-Log-Packet DEFINITIONS ::=BEGIN
+
+LTE-ML1-CA-Metrics-Log-Packet-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+
+    skip0                        BIT STRING(SIZE(4)),
+    event                        Event,
+
+    num-scells                   INTEGER (0..255),
+
+    skip1                        BIT STRING(SIZE(4)),
+    sub-fn                       INTEGER (0..15),
+
+    skip2                        BIT STRING(SIZE(6)),
+    sfn                          INTEGER (0..1023),
+
+    endc-mode-enabled            Endc-mode-enabled,
+    skip3                        BIT STRING(SIZE(15))
+}
+
+Event ::=ENUMERATED
+{
+    sCC-CONFIG                  (0),
+    unknown1                    (1),
+    sCC-ACTIVATE                (2),
+    sCC-DEACTIVATE              (3),
+    sCC-VRLF-ACTIVATE           (4),
+    unknown5                    (5),
+    cONNECTION-RELEASE          (6),
+    unknown7                    (7),
+    unknown8                    (8)
+}
+
+Endc-mode-enabled ::=ENUMERATED
+{
+    false                       (0),
+    true                        (1)--guess
+}
+
+-- content=
+LTE-ML1-CA-Metrics-Log-Packet-content ::=SEQUENCE
+{
+    pcell-start                         Pcell-start,    
+    total-metrics                       Total-metrics,
+    ca-configured-metrics               Total-metrics,
+    ca-activated-metrics                Total-metrics
+}
+
+Pcell-start ::=SEQUENCE
+{
+    earfcn                              INTEGER(0..4294967295),
+    pci                                 INTEGER(0..65535),
+    band                                INTEGER(0..255),
+    dl-bw                               INTEGER(0..255)
+}
+
+
+Total-metrics ::=SEQUENCE
+{
+       
+    pcell-only                          Pcell-only,
+    scell-only                          Pcell-only,
+    pcell-and-scell-any                 Pcell-only,
+    pcell                               Pcell-only,
+    structure-end                       Structure-end
+}
+
+Pcell-only ::=SEQUENCE
+{
+    dl-num-sf-scheduled                 INTEGER(0..4294967295),
+    ul-num-sf-scheduled                 INTEGER(0..4294967295),
+    dl-tb-size                          INTEGER(0..4294967295),
+    skip4                               OCTET STRING(SIZE(4)),
+    ul-tb-size                          INTEGER(0..4294967295),
+    skip5                               OCTET STRING(SIZE(4))
+}
+
+Structure-end ::=SEQUENCE
+{
+    elapsed-timeL                       INTEGER(0..4294967295),
+    skip6                               OCTET STRING(SIZE(4))
+}
+
+--scells
+
+LTE-ML1-CA-Metrics-Log-Packet-scells ::=SEQUENCE
+{
+    scells-start                        Scells-start,
+    total-scell-metrics                 Pcell-only,
+    ca-conf-scell-metrics               Pcell-only,
+    ca-act-scell-metrics                Pcell-only
+}
+
+Scells-start ::=SEQUENCE
+{
+    pcell-start                         Pcell-start,
+
+    skip7                               BIT STRING(SIZE(6)),
+    dl-staet                            Dl-state,
+
+    skip8                               BIT STRING(SIZE(7)),
+    ul-state                            Ul-state,
+
+    ml-id                               INTEGER(0..255),
+    ll-id                               INTEGER(0..255)
+}
+
+Dl-state ::=ENUMERATED
+{
+    unknown0                            (0),
+    deactivated                         (1),
+    activated                           (2)
+}
+
+Ul-state ::=ENUMERATED
+{
+    not-configured                      (0),
+    configfured                         (1)--guess
+}
+END

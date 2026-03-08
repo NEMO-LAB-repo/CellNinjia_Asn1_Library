@@ -1,0 +1,107 @@
+LTE-ML1-AdvRx-IC-Cell-List DEFINITIONS ::=BEGIN
+
+LTE-ML1-AdvRx-IC-Cell-List-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+
+    carrier-index                Carrier-index,
+    skip0                        BIT STRING(SIZE(6)),
+
+    eNB-Type                     ENB-Type,
+    skip1                        BIT STRING(SIZE(7)),
+
+    fw-mode                      Fw-mode,
+    skip15                       BIT STRING(SIZE(7)),
+
+    earfcn-data                  INTEGER (0..4294967295),
+
+    skip2                        OCTET STRING(SIZE(1)),
+    num-Neighbors                INTEGER (0..255),
+    skip3                        BIT STRING(SIZE(12)),
+    panic-escape-mask            INTEGER (0..15),
+
+    valid-Sched-Rate             INTEGER (0..255),
+    is-Carrier-Cfg-FW            INTEGER (0..255),
+
+    sub-fn                       INTEGER (0..65535),
+
+    tm-Mode                      INTEGER (0..255),
+
+    skip5                        OCTET STRING(SIZE(3)),
+
+    serving                      Serving
+}
+
+Serving ::=SEQUENCE
+{
+    serving-cell-id              INTEGER (0..65535),
+    dl-Bandwidth                 INTEGER (0..65535),
+    num-Antennas                 INTEGER (0..255),
+    skip6                        OCTET STRING(SIZE(3)),
+    filt-rsrp-data               INTEGER (0..65535),
+    skip14                       OCTET STRING(SIZE(3)),
+
+    skip7                        BIT STRING(SIZE(7)),--not sure maybe less than 7
+    cell-type                    Cell-type,
+    iC-Inr-Use-Nb                INTEGER (0..255),
+    rsrp-use-nb                  INTEGER (0..255),
+    skip8                        OCTET STRING(SIZE(12))
+}
+
+Carrier-index ::=ENUMERATED
+{
+    pcc                             (0),
+    scc1                            (1),
+    scc2                            (2)
+}
+ENB-Type ::=ENUMERATED
+{
+    no-FeICIC-cell                  (0),
+    unknown1                        (1)
+}
+Fw-mode ::=ENUMERATED
+{
+    none                            (0),
+    unknown1                        (1)
+}
+Cell-type ::=ENUMERATED -- wait for expand
+{
+    unknown0                        (0),
+    cELL-SERVING                    (1)
+}
+
+
+
+LTE-ML1-AdvRx-IC-Cell-List-Neighbor ::=SEQUENCE
+{
+    cell-ID                        INTEGER (0..65535),
+    dl-Bandwidth                   INTEGER (0..65535),
+    num-Antennas                   INTEGER (0..255),
+    skip9                          OCTET STRING(SIZE(3)),
+    filt-RSRP-Data                 INTEGER (0..65535),
+    skip10                         OCTET STRING(SIZE(4)),
+    
+    skip11                         BIT STRING(SIZE(5)),
+    cell-Type                      Cell-Type,
+
+    skip12                         OCTET STRING(SIZE(2)),
+
+    ic-inr-use-nb                  INTEGER (0..255),
+    rsrp-use-nb                    INTEGER (0..255),
+    skip13                         OCTET STRING(SIZE(9))
+}
+
+Cell-Type ::=ENUMERATED
+{
+    unknown0                      (0),
+    cELL-UNMEASURED               (1),
+    cELL-ASYNC                    (2),
+    unkownn3                      (3),
+    unknown4                      (4),
+    cELL-NOT-IN-IC-LIST           (5)
+}
+
+
+--last 12 skip bytes not write in asn1 but in glue code
+
+END

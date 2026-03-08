@@ -1,0 +1,25 @@
+NR5G-LL1-FW-RX-Control-AGC-v131072 DEFINITIONS ::=BEGIN
+
+-- S-H --
+NR5G-LL1-FW-RX-Control-AGC-v131072-S-H ::= SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    skip                        OCTET STRING(SIZE(8))
+}
+
+-- AGC Record -- 
+NR5G-LL1-FW-RX-Control-AGC-v131072-AGC-Record ::= SEQUENCE
+{
+    variant-id               INTEGER(0..15),
+    version                    INTEGER(0..15),
+
+    skip0                      BIT STRING(SIZE(25)),
+
+    log-size                   INTEGER(0..127),
+    skip1                    BIT STRING(SIZE(4)),
+    system-frame-number       INTEGER(0..1023),
+    fractional-unit-slot-number INTEGER(0..127),
+    log2-slot-to-unit-slot     INTEGER(0..7)
+}
+
+END

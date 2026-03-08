@@ -1,0 +1,68 @@
+NR5G-L2-DL-DATA-PDU DEFINITIONS ::=BEGIN
+
+NR5G-L2-DL-DATA-PDU-S-H ::=SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    num-tb                      INTEGER(0..4294967295),
+    last-processed-ts           INTEGER(0..65535),
+    num-lcid                    INTEGER(0..255),
+    skip                        OCTET STRING(SIZE(1))
+}
+
+-- RB config -- 
+NR5G-L2-DL-DATA-PDU-RB-Config ::=SEQUENCE
+{
+    lcid                        INTEGER(0..255),
+
+    pdcp-sn-bits                INTEGER(0..3),
+    rb-type                     RB-Type,
+    skip0                       BIT STRING(SIZE(3)),
+    rlc-rb-index                INTEGER(0..3),
+    skip1                       BIT STRING(SIZE(3)),
+    rlc-sn-bits                 INTEGER(0..3),
+    rlc-mode-value              RLC-Mode-Value,
+
+    skip2                       OCTET STRING(SIZE(1)),
+
+    pdcp-state-var              PDCP-State-Var,
+    rlc-state-var               RLC-State-Var
+}
+RB-Type ::=ENUMERATED
+{
+    invalid                     (0),
+    srb                         (1),
+    drb                         (2)
+}
+RLC-Mode-Value ::=ENUMERATED
+{
+    invalid                     (0),
+    am                          (1),
+    unknown2                    (2),
+    unknown3                    (3)
+}
+
+PDCP-State-Var ::=SEQUENCE
+{
+    rx-next                     INTEGER(0..4294967295),
+    next-ipa                    INTEGER(0..4294967295)
+}
+RLC-State-Var ::=SEQUENCE
+{
+    rx-next                     INTEGER(0..4294967295),
+    rx-next-status-trigger      INTEGER(0..4294967295),
+    rx-highest-status           INTEGER(0..4294967295),
+    rx-next-highest             INTEGER(0..4294967295)
+}
+
+-- TB Data Agg -- 
+NR5G-L2-DL-DATA-PDU-TB-Data-Agg ::=SEQUENCE
+{
+    tb-size                     INTEGER(0..4294967295),
+    slot                        INTEGER(0..65535),
+    frame                       INTEGER(0..65535),
+    num-subheader               INTEGER(0..65535),
+    ca-id                       INTEGER(0..65535),
+    num-logged-subheaders       INTEGER(0..4294967295)
+}
+
+END

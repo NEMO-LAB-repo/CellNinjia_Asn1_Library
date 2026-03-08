@@ -1,0 +1,148 @@
+NR5G-L2-UL-Config DEFINITIONS ::=BEGIN
+
+NR5G-L2-UL-Config-S-H ::=SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    meta                        META,
+    skip0                       OCTET STRING(SIZE(27)),
+    nr5g-security-config      NR5G-Security-Config
+}
+
+META ::=SEQUENCE
+{
+    skip0                      OCTET STRING(SIZE(1)),
+    configured-srb-bitmask    INTEGER(0..3),
+    num-rb-logged            INTEGER(0..63),
+    skip1                      OCTET STRING(SIZE(2)),
+    configured-drb-bitmask    INTEGER(0..255)
+}
+NR5G-Security-Config ::=SEQUENCE
+{
+    drb-id-bitmask                INTEGER(0..4294967295),
+    srb-id-bitmask                INTEGER(0..4294967295),
+    srb-cipher-key-index           INTEGER(0..15),
+    srb-cipher-algo             SRB-Cipher-Algo,
+    srb-integrity-key-index        INTEGER(0..15),
+    srb-integrity-algo         SRB-Integrity-Algo,
+    drb-cipher-key-index           INTEGER(0..15),
+    drb-cipher-algo             DRB-Cipher-Algo,
+    drb-integrity-key-index        INTEGER(0..15),
+    drb-integrity-algo         DRB-Integrity-Algo,
+
+    srb-cipher-key             SRB-Cipher-Key,
+    srb-integrity-key         SRB-Integrity-Key,
+    drb-cipher-key             DRB-Cipher-Key,
+    drb-integrity-key         DRB-Integrity-Key,
+
+    skip1                       BIT STRING(SIZE(2)),
+
+    pdcp-srb-bitmask            INTEGER(0..7),
+    rlc-srb-bitmask           INTEGER(0..7),
+
+    skip2                       OCTET STRING(SIZE(3)),
+    pdcp-drb-bitmask            INTEGER(0..255),
+    skip3                       OCTET STRING(SIZE(3)),
+    rlc-drb-bitmask           INTEGER(0..255),
+    skip4                       OCTET STRING(SIZE(3))
+}
+SRB-Cipher-Algo ::=ENUMERATED
+{
+    none                        (0),
+    unknown1                    (1),
+    aes                   (2),
+    unknown3                    (3),
+    unknown4                    (4),
+    unknown5                    (5),
+    unknown6                    (6),
+    unknown7                    (7),
+    unknown8                    (8)
+}
+SRB-Integrity-Algo ::=ENUMERATED
+{
+    none                        (0),
+    unknown1                    (1),
+    aes                   (2),
+    unknown3                    (3),
+    unknown4                    (4),
+    unknown5                    (5),
+    unknown6                    (6),
+    unknown7                    (7),
+    unknown8                    (8)
+}
+DRB-Cipher-Algo ::=ENUMERATED
+{
+    none                        (0),
+    unknown1                    (1),
+    aes                   (2),
+    unknown3                    (3),
+    unknown4                    (4),
+    unknown5                    (5),
+    unknown6                    (6),
+    unknown7                    (7),
+    unknown8                    (8)
+}
+DRB-Integrity-Algo ::=ENUMERATED
+{
+    none                        (0),
+    unknown1                    (1),
+    aes                   (2),
+    unknown3                    (3),
+    unknown4                    (4),
+    unknown5                    (5),
+    unknown6                    (6),
+    unknown7                    (7),
+    unknown8                    (8)
+}
+
+SRB-Cipher-Key ::=SEQUENCE
+{
+    raw1                    INTEGER(0..4294967295),
+    raw2                    INTEGER(0..4294967295),
+    raw3                    INTEGER(0..4294967295),
+    raw4                    INTEGER(0..4294967295)
+}
+SRB-Integrity-Key ::=SEQUENCE
+{
+    raw1                    INTEGER(0..4294967295),
+    raw2                    INTEGER(0..4294967295),
+    raw3                    INTEGER(0..4294967295),
+    raw4                    INTEGER(0..4294967295)
+}
+DRB-Cipher-Key ::=SEQUENCE
+{
+    raw1                    INTEGER(0..4294967295),
+    raw2                    INTEGER(0..4294967295),
+    raw3                    INTEGER(0..4294967295),
+    raw4                    INTEGER(0..4294967295)
+}
+DRB-Integrity-Key ::=SEQUENCE
+{
+    raw1                    INTEGER(0..4294967295),
+    raw2                    INTEGER(0..4294967295),
+    raw3                    INTEGER(0..4294967295),
+    raw4                    INTEGER(0..4294967295)
+}
+
+--RB--
+NR5G-L2-UL-Config-RB ::=SEQUENCE
+{
+    rb-id                    INTEGER(0..3),
+    lcid                   INTEGER(0..63),
+    eps-id                  INTEGER(0..15),
+    skip0                   BIT STRING(SIZE(42)),
+    drb-ip                  DRB-IP,
+    skip1                   BIT STRING(SIZE(9)),
+
+    poll-bytes            INTEGER(0..4294967295),
+    poll-pdu             INTEGER(0..65535),
+    t-poll-retx         INTEGER(0..65535),
+    max-retx-threshold  INTEGER(0..65535),
+    t-pdcp-discard    INTEGER(0..65535),
+    skip2                   OCTET STRING(SIZE(4))
+}
+DRB-IP ::=ENUMERATED
+{
+    false                       (0),
+    true                        (1)
+}
+END

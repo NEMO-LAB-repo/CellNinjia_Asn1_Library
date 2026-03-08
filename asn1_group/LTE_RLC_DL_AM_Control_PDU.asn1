@@ -1,0 +1,80 @@
+RLC-DL-AM-Control-PDU DEFINITIONS ::= BEGIN
+
+RLC-DL-AM-CONTROL-PDU-S-HEADER ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+    skip0                        OCTET STRING (SIZE (3)),
+    versions-num-control-pdu     INTEGER (0..255),
+    skip1                        OCTET STRING (SIZE (3))
+}
+
+RLC-DL-AM-CONTROL-PDU-PDU ::=SEQUENCE
+{
+    sys-time                     Sys-Time,
+
+    skip5                        INTEGER (0..255),
+
+    skip6                        BIT STRING(SIZE (4)),
+    sn-length                    INTEGER(0..15),
+
+    control-pdu-size             INTEGER (0..255),
+
+    payload                      Payload
+}
+
+Sys-Time ::=SEQUENCE
+{
+    skip2                        BIT STRING(SIZE (4)),
+    sub-fn                       INTEGER(0..15),
+
+    skip3                        BIT STRING(SIZE (8)),
+
+    skip4                        BIT STRING(SIZE (6)),
+    sfn                          INTEGER(0..1023)
+}
+
+Payload ::=SEQUENCE
+{
+    am-pdu                       AM-PDU
+}
+
+AM-PDU ::=SEQUENCE
+{
+    pdu-based-on-dc-union        Control-PDU       
+}
+
+Control-PDU ::=SEQUENCE
+{
+    d-c                         INTEGER(0..1),
+    cpt                         Cpt,
+    skip7                       BIT STRING(SIZE (4)),
+
+    skip8                       BIT STRING(SIZE (4)),
+    ack-part                    INTEGER(0..15),
+
+    rlcdl-ctrl-dck-sn           INTEGER(0..63),
+    e1-exist-flag               INTEGER(0..1),
+    e2-exist-flag               INTEGER(0..1)
+}
+
+Cpt ::= ENUMERATED
+{
+    status     (0),
+    unknown1    (1),
+    unknown2    (2),
+    unknown3    (3),
+    unknown4    (4),
+    unknown5    (5),
+    unknown6    (6),
+    unknown7    (7)
+}
+
+RLC-DL-AM-Control-PDU-E1 ::=SEQUENCE
+{
+    nack-sn                     INTEGER(0..511),
+    e1-e1-exist-flag            INTEGER(0..1),
+    e1-e2-exist-flag            INTEGER(0..1),
+    skip9                       BIT STRING(SIZE (5))
+}
+
+END

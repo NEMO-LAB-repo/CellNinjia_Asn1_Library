@@ -1,0 +1,44 @@
+NR5G-MAC-RACH-Trigger DEFINITIONS ::= BEGIN
+
+
+--NR5G-MAC-RACH-Trigger-S-H -- 
+NR5G-MAC-RACH-Trigger-S-H ::= SEQUENCE
+{
+    version                 INTEGER (0..4294967295),
+    skip0                  OCTET STRING (SIZE(3)),
+    num-record              INTEGER (0..255),
+
+    system-time      System-Time,
+    c-rnti           INTEGER (0..65535),
+    
+    skip2                   BIT STRING (SIZE(5)),
+    rach-reason   RACH-Reason,
+    ca-id          INTEGER (0..255),
+    first-active-ul-bwp INTEGER (0..255),
+    active-dl-bwp INTEGER (0..255),
+    ul-rach-rsrc-present INTEGER (0..255),
+    dl-rach-rsrc-present INTEGER (0..255),
+    skip3                   OCTET STRING (SIZE(36))
+}
+System-Time ::= SEQUENCE
+{
+    skip1                   BIT STRING (SIZE(2)),
+    subframe         INTEGER (0..15),
+    frame            INTEGER (0..1023),
+
+    slot            INTEGER (0..255),
+    scs           INTEGER (0..255)
+}
+
+
+RACH-Reason ::= ENUMERATED {
+    connection-request (0),
+    radio-link-failure (1),
+    handover (2),
+    ul-data-arrival (3),
+    unknown4 (4),
+    unknown5 (5),
+    beam-failure (6)
+}
+
+END

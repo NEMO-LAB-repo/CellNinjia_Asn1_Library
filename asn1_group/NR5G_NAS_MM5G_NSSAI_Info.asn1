@@ -1,0 +1,51 @@
+NR5G-NAS-MM5G-NSSAI-Info DEFINITIONS ::=BEGIN
+
+NR5G-NAS-MM5G-NSSAI-Info-S-H ::=SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+
+    skip0                       BIT STRING(SIZE(7)),
+    version-reasons             Version-Reason,
+
+    plmn-id                     OCTET STRING(SIZE(3)),
+
+    skip1                       BIT STRING(SIZE(6)),
+    nssai-list-type             Nssai-List-Type,
+
+    num-nssai                   INTEGER(0..255)
+}
+
+Version-Reason ::=ENUMERATED
+{
+    unknown0                    (0),
+    mm5g-reg-accept             (1)
+}
+Nssai-List-Type ::=ENUMERATED
+{
+    unknown0                    (0),
+    nr5g-allowed-s-nssai        (1),
+    unknown2                    (2),
+    nr5g-req-s-nssai            (3)
+}
+
+NR5G-NAS-MM5G-NSSAI-Info-NSSAI ::=SEQUENCE
+{
+    sst                        INTEGER(0..255),
+    sd                         SD,
+    skip2                      BIT STRING(SIZE(7)),
+    mapping-exists             Mapping-Exists
+}
+
+SD ::=SEQUENCE
+{
+    sd-val0                    INTEGER(0..255),
+    sd-val1                    INTEGER(0..255),
+    sd-val2                    INTEGER(0..255)
+}
+Mapping-Exists ::=ENUMERATED
+{
+    false                      (0),
+    true                       (1)
+}
+
+END

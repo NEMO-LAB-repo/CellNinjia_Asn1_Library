@@ -1,0 +1,100 @@
+NR5G-MAC-CSF-Report DEFINITIONS ::= BEGIN
+
+-- S-H --
+NR5G-MAC-CSF-Report-S-H ::= SEQUENCE
+{
+    minor-version                INTEGER (0..65535),
+    major-version                INTEGER (0..65535),
+    skip0                        OCTET STRING (SIZE(11)),
+    num-records                  INTEGER (0..255)
+}
+
+-- R-H --
+NR5G-MAC-CSF-Report-R-H ::= SEQUENCE
+{
+    slot                        INTEGER (0..255),
+
+    skip0                        BIT STRING (SIZE(6)),
+    numerology                  Numerology,
+
+    skip1                       BIT STRING (SIZE(6)),
+    frame                       INTEGER (0..1023),
+
+    num-csf-reports            INTEGER (0..255),
+
+    skip2                        OCTET STRING (SIZE(3))
+}
+Numerology ::=ENUMERATED
+{
+    unknown (0),
+    n-30khz (1),
+    unknown2 (2)
+}
+
+--CSF Report--
+NR5G-MAC-CSF-Report-Record-Report ::= SEQUENCE
+{
+    skip0                        BIT STRING (SIZE(12)),
+    report-id                   INTEGER (0..15),
+
+    report-quantity-bitmask    INTEGER (0..255),
+
+    skip1                        BIT STRING (SIZE(2)),
+    num-csi-p1-bits            INTEGER (0..15),
+    skip2                        BIT STRING (SIZE(34))
+}
+
+--RSRP -- 
+NR5G-MAC-CSF-Report-Record-RSRP ::= SEQUENCE
+{
+    cri-ssbri-bit-width        INTEGER (0..3),
+    skip0                        BIT STRING (SIZE(5)),
+    resource-set-id            INTEGER (0..1),
+
+    skip1                        BIT STRING (SIZE(4)),
+    rsrp-bit-width            INTEGER (0..7),
+    skip2                        BIT STRING (SIZE(17)),
+
+    rsrp-0                    INTEGER (0..255),
+    rsrp-1                    INTEGER (0..255),
+    rsrp-2                    INTEGER (0..255),
+    rsrp-3                    INTEGER (0..255),
+
+    ssbri-cri-0            INTEGER (0..255),
+    ssbri-cri-1            INTEGER (0..255),
+    ssbri-cri-2            INTEGER (0..255),
+    ssbri-cri-3            INTEGER (0..255),
+
+    skip3                     OCTET STRING (SIZE(40))
+}
+
+-- CSI -- 
+NR5G-MAC-CSF-Report-Record-CSI ::= SEQUENCE
+{
+    csi-metrics            CSI-Metrics,
+    skip0                  OCTET STRING (SIZE(44)),
+    csi-bit-width          CSI-Bit-Width,
+    skip1                  OCTET STRING (SIZE(1))
+}
+CSI-Metrics ::=SEQUENCE
+{
+    skip0                        BIT STRING (SIZE(7)),
+    pmi-wb-x1                    INTEGER (0..255),
+    wb-cqi                    INTEGER (0..15),
+    ri                        INTEGER (0..3),
+    cri                    INTEGER (0..7),
+    skip1                        BIT STRING (SIZE(4)),
+    pmi-wb-x2                    INTEGER (0..1),
+    skip2                        BIT STRING (SIZE(3))
+}
+CSI-Bit-Width ::=SEQUENCE
+{
+    skip0                        BIT STRING (SIZE(7)),
+    pmi-wb-x1                    INTEGER (0..15),
+    wb-cqi                    INTEGER (0..7),
+    skip1                        BIT STRING (SIZE(5)),
+    ri                        INTEGER (0..3),
+    cri                    INTEGER (0..7)
+}
+
+END

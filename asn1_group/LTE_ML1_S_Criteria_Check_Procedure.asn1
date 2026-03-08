@@ -1,0 +1,103 @@
+LTE-ML1-S-Criteria-Check-Procedure DEFINITIONS ::= BEGIN
+
+LTE-ML1-S-Criteria-Check-Procedure-S-H ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    versions-Number-of-SubPackets               INTEGER (0..255),
+    skip0                                       BIT STRING(SIZE(16))
+}
+
+LTE-ML1-S-Criteria-Check-Procedure-Subpacket-ID-4 ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    subpacket-size                              INTEGER (0..255),
+    subPacket-Idle-Meas-Cell-Select-Request     SubPacket-Idle-Meas-Cell-Select-Request
+}
+
+SubPacket-Idle-Meas-Cell-Select-Request ::=SEQUENCE
+{
+    skip1                                       BIT STRING(SIZE(14)),
+    versions-Standards-Version                  Versions-Standards-Version,
+    skip17                                      BIT STRING(SIZE(24)),
+
+    e-ARFCN                                     INTEGER(0..16777215),
+
+    skip2                                       BIT STRING(SIZE(8)),
+
+    physical-Cell-ID                            INTEGER(0..65525),
+    
+    qrxlevmin-Offset-Data                       INTEGER(0..65525),   
+
+    skip3                                       BIT STRING(SIZE(5)),--not sure
+    qrxlevmin-Data                              INTEGER(0..7),
+
+    p-max-Data                                  INTEGER(0..255),
+
+    max-UE-Tx-Power-Data                        INTEGER(0..255),
+
+    srxlev-Data                                 INTEGER(0..255),
+
+    release-9-Info                              Release-9-Info,
+
+    skip8                                       BIT STRING(SIZE(16))
+} 
+
+Versions-Standards-Version ::=ENUMERATED
+{
+    unknown0                                    (0),
+    release-9                                   (1),
+    unknown2                                    (2)
+}
+
+Release-9-Info ::=SEQUENCE
+{
+    s-Qual-Data                                 INTEGER(0..63),
+    skip7                                       BIT STRING(SIZE(2)),
+    q-Qual-Min-Data                             INTEGER(0..15),
+    q-Qual-Min-Offset                           INTEGER(0..15)
+}
+
+LTE-ML1-S-Criteria-Check-Procedure-Subpacket-ID-9 ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    subpacket-size                              INTEGER (0..255),
+    subPacket-Idle-Meas-Serving-Cell-Measurements     SubPacket-Idle-Meas-Serving-Cell-Measurements
+}
+
+SubPacket-Idle-Meas-Serving-Cell-Measurements ::=SEQUENCE
+{
+    skip9                                       BIT STRING(SIZE(14)),
+    versions-Standards-Version                  Versions-Standards-Version,
+    skip10                                      BIT STRING(SIZE(24)),
+
+    inst-Measured-RSRQ-Data                     INTEGER (0..255),
+
+    srxlev-Data                                 INTEGER (0..127),
+    skip11                                      BIT STRING(SIZE(1)),
+
+    skip12                                      BIT STRING(SIZE(7)),
+    inst-Measured-RSRP-Data                     INTEGER (0..511),
+
+    display-avg                                 Display-Avg,
+    skip13                                      BIT STRING(SIZE(6)),
+    inst-Measured-RSSI-Data                     INTEGER (0..511),
+
+    avg-Measured-RSRQ-Data                      INTEGER (0..65535),
+
+    avg-Measured-RSRP-Data                      INTEGER (0..65535),
+
+    avg-Measured-RSSI-Data                      INTEGER (0..65535),
+
+    skip14                                      BIT STRING(SIZE(8)),
+    s-qual-data                                 INTEGER (0..255),
+
+    skip16                                      BIT STRING(SIZE(16))
+}
+
+Display-Avg ::=ENUMERATED
+{
+    false                                       (0),
+    true                                        (1)--guess
+}
+
+END

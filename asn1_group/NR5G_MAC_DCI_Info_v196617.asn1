@@ -1,0 +1,215 @@
+NR5G-MAC-DCI-Info-v196617 DEFINITIONS ::= BEGIN
+
+NR5G-MAC-DCI-Info-v196617-S-H ::= SEQUENCE 
+{
+    version      INTEGER(0..4294967295),
+    skip0      OCTET STRING(SIZE(3)),
+    num-records         INTEGER(0..255),
+    num-ul-dci          INTEGER(0..255),
+    num-dl-dci-c-tc-cs  INTEGER(0..255),
+    num-dl-dci-p-ra-si  INTEGER(0..255),
+    num-dl-dci-pdcch-order INTEGER(0..255),
+    num-dl-dci-tpc     INTEGER(0..255),
+    num-dl-dci-ps   INTEGER(0..255),
+    skip1      OCTET STRING(SIZE(2))
+}
+
+--UL DCI --
+NR5G-MAC-DCI-Info-v196617-UL-DCI-Slot-Info ::= SEQUENCE
+{
+    slot-number     INTEGER(0..255),
+    skip0           BIT STRING(SIZE(5)),
+    numerology      Numerology,
+
+    num-records     INTEGER(0..15),
+    skip1           BIT STRING(SIZE(2)),
+    system-frame-number INTEGER(0..1023)
+}
+Numerology ::=ENUMERATED
+{
+    n-15khz                    (0),        
+    n-30khz                       (1),
+    n-60khz                    (2),
+    n-120khz                   (3),
+    n-240khz                   (4),
+    n-480khz                   (5),
+    n-960khz                   (6)
+}
+
+NR5G-MAC-DCI-Info-v196617-UL-DCI ::= SEQUENCE
+{
+    skip0          INTEGER(0..255),
+    is-raw-dci   INTEGER(0..3),
+    agg-level    Aggregation-Level,
+    dci-format   DCI-Format,
+
+    skip1          OCTET STRING(SIZE(2)),
+    raw-dci-3      OCTET STRING(SIZE(4)),
+    raw-dci-2      OCTET STRING(SIZE(4)),
+    raw-dci-1      OCTET STRING(SIZE(4)),
+    raw-dci-0      OCTET STRING(SIZE(4)),
+
+    skip2          BIT STRING(SIZE(6)),
+    dci-Format     DCI-Format,
+
+    skip3          BIT STRING(SIZE(6)),
+    bwp-ind       INTEGER(0..1),
+    skip4         BIT STRING(SIZE(1)),
+    symbol-alloc-index INTEGER(0..7),
+    pusch-tpc    INTEGER(0..3),
+    harq-id       INTEGER(0..15),
+    rv         INTEGER(0..3),
+    mcs        INTEGER(0..31),
+
+    skip5         BIT STRING(SIZE(1)),
+    dai2        INTEGER(0..3),
+    dai1        INTEGER(0..3),
+    rb-assignment INTEGER(0..524287),
+
+    precoding-layer-info INTEGER(0..63),
+    skip6         BIT STRING(SIZE(3)),
+
+    csi-request INTEGER(0..63),
+    srs-request INTEGER(0..3),
+    dmrs-seq-init-flag INTEGER(0..1),
+    skip7         BIT STRING(SIZE(1)),
+    antenna-ports INTEGER(0..15),
+    ul-sch-ind  INTEGER(0..1),
+
+    skip8         BIT STRING(SIZE(11)),
+    prune-error-bitmask    INTEGER(0..32767),
+    prune-reason-msb       Prune-Reason-Msb,
+    skip9         BIT STRING(SIZE(2)),
+    ra-type      INTEGER(0..1),
+
+    skip10         OCTET STRING(SIZE(2))
+}
+Aggregation-Level ::= ENUMERATED
+{
+    level-1 (0),
+    unknown1 (1),
+    level-2 (2),
+    unknown3 (3),
+    level-4 (4),
+    unknown5 (5),
+    level-8 (6),
+    unknown7 (7),
+    level-16 (8)
+}
+DCI-Format ::= ENUMERATED
+{
+    ul-0-0 (0),
+    ul-0-1 (1),
+    dl-1-0 (2),
+    dl-1-1 (3)
+}
+Prune-Reason-Msb ::= ENUMERATED
+{
+    none (0),
+    unknown1 (1),
+    unknown2 (2),
+    invalid-riv (3),
+    unknown4 (4),
+    invalid-res-mcs (5),
+    unknown6 (6),
+    unknown7 (7)
+}
+
+--DL-DCI-C-TC-CS--
+NR5G-MAC-DCI-Info-v196617-DL-DCI-C-TC-CS-Slot-Info ::= SEQUENCE
+{
+    slot-number     INTEGER(0..255),
+    skip0           BIT STRING(SIZE(5)),
+    numerology      Numerology,
+
+    num-records     INTEGER(0..15),
+    skip1           BIT STRING(SIZE(2)),
+    system-frame-number INTEGER(0..1023)
+}
+NR5G-MAC-DCI-Info-v196617-DL-DCI-C-TC-CS ::= SEQUENCE
+{
+    skip0          BIT STRING(SIZE(14)),
+    dci-format   DCI-Format,
+    skip1          OCTET STRING(SIZE(3)),
+    num-layers   INTEGER(0..255),
+    start-cce-offset INTEGER(0..127),
+    skip2          BIT STRING(SIZE(47)),
+    td-alloc       INTEGER(0..15),
+    skip7        BIT STRING(SIZE(3)),
+    rb-alloc       INTEGER(0..65535),
+    skip3          BIT STRING(SIZE(3)),
+
+    ndi        INTEGER(0..1),
+    rv        INTEGER(0..3),
+    mcs       INTEGER(0..31),
+
+    ndi1       INTEGER(0..1),
+    rv1       INTEGER(0..3),
+    mcs1      INTEGER(0..31),
+
+    harq-id      INTEGER(0..255),
+    skip4         OCTET STRING(SIZE(1)),
+    antenna-ports INTEGER(0..255),
+
+    dai       INTEGER(0..7),
+    pdsch-harq-fb INTEGER(0..7),
+    pucch-res-ind INTEGER(0..7),
+    skip5         BIT STRING(SIZE(3)),
+    dmrs-seq-init INTEGER(0..1),
+    zp-csi INTEGER(0..3),
+    skip6        BIT STRING(SIZE(1)),
+
+    skip8         OCTET STRING(SIZE(5))
+}
+
+--DL-DCI-P-RA-SI--
+NR5G-MAC-DCI-Info-v196617-DL-DCI-P-RA-SI-Slot-Info ::= SEQUENCE
+{
+    slot-number     INTEGER(0..255),
+    skip0           BIT STRING(SIZE(5)),
+    numerology      Numerology,
+
+    num-records     INTEGER(0..15),
+    skip1           BIT STRING(SIZE(2)),
+    system-frame-number INTEGER(0..1023)
+}
+
+NR5G-MAC-DCI-Info-v196617-DL-DCI-P-RA-SI ::= SEQUENCE
+{
+    rnti-type      RNTI-Format,
+    skip0          BIT STRING(SIZE(5)),
+    agg-level    Aggregation-Level,
+    skip1         BIT STRING(SIZE(1)),
+    dci-format   DCI-Format,
+
+    skip2          OCTET STRING(SIZE(3)),
+
+    num-layers   INTEGER(0..255),
+    start-cce-offset INTEGER(0..127),
+
+    skip3          BIT STRING(SIZE(47)),
+
+    td-alloc       INTEGER(0..15),
+    skip4          BIT STRING(SIZE(3)),
+    rb-alloc       INTEGER(0..65535),
+    skip5          BIT STRING(SIZE(3)),
+    
+    skip6          OCTET STRING(SIZE(12))
+
+}
+RNTI-Format ::= ENUMERATED
+{
+    c-rnti (0),
+    t-c-rnti (1),
+    si-rnti (2),
+    unknown3 (3),
+    p-rnti (4),
+    unknown5 (5),
+    unknown6 (6),
+    unknown7 (7),
+    ra-rnti (8)
+}
+
+
+
+END

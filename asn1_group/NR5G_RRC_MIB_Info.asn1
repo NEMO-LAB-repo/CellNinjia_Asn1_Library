@@ -1,0 +1,39 @@
+NR5G-RRC-MIB-Info DEFINITIONS ::=BEGIN
+
+NR5G-RRC-MIB-Info-S-H ::=SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    physicall-cell-id           INTEGER(0..65535),
+    dl-frequency                INTEGER(0..4294967295),
+
+
+    intra-freq-reselection      Intra-Freq-Reselection,
+    skip0                       BIT STRING(SIZE(3)),
+    sfn                         INTEGER(0..4095),
+
+    pdcch-config-sib1           INTEGER(0..255),
+    
+    subcarrier-spacing-common   Subcarrier-Spacing-Common,
+    ssb-subcarrier-offset       INTEGER(0..15),
+    dmrs-typea-position         Dmrs-Typea-Position
+}
+
+Subcarrier-Spacing-Common ::=ENUMERATED
+{
+    scsc15                      (0),
+    scsc30                      (1),
+    unknown2                    (2)
+}
+Dmrs-Typea-Position ::=ENUMERATED
+{
+    unknown0                    (0),
+    unknown1                    (1),
+    pos2                        (2) 
+}
+
+Intra-Freq-Reselection ::=ENUMERATED
+{
+    unknown0                    (0),
+    allowed                     (1)
+}
+END

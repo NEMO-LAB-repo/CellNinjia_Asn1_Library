@@ -1,0 +1,10 @@
+MetadataHeader DEFINITIONS ::= BEGIN
+
+MetadataHeader ::=SEQUENCE
+{
+    msg-len                    INTEGER (0..65535),
+    logcode                    OCTET STRING (SIZE (2)),
+    timestamp                  OCTET STRING (SIZE (8))
+}
+
+END

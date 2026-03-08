@@ -1,0 +1,60 @@
+NR5G-MAC-UCI-Payload-Information DEFINITIONS ::= BEGIN
+
+--S-H--
+NR5G-MAC-UCI-Payload-Information-S-H ::= SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    skip                        OCTET STRING(SIZE(3)),
+    num-records                 INTEGER(0..255)
+}
+
+--R-H--
+NR5G-MAC-UCI-Payload-Information-R-H ::= SEQUENCE
+{
+    system-time                System-Time,
+    skip0                     BIT STRING(SIZE(4)),
+    num-channels              INTEGER(0..15),
+    skip1                     OCTET STRING(SIZE(3))
+
+}
+System-Time ::= SEQUENCE
+{
+    slot                       INTEGER(0..255),
+    skip0                     OCTET STRING(SIZE(1)),
+    skip1                     BIT STRING(SIZE(6)),
+    frame                     INTEGER(0..1023)
+}
+
+--Channel Info--
+NR5G-MAC-UCI-Payload-Information-Channel-Info ::= SEQUENCE
+{
+    skip0                     BIT STRING(SIZE(5)),
+    channel                   Channel,
+
+    num-sr-bits               INTEGER(0..3),
+    skip1                     BIT STRING(SIZE(4)),
+    num-harq-bits             INTEGER(0..7),
+    num-symbol                INTEGER(0..15),
+    skip2                     BIT STRING(SIZE(11)),
+
+    num-scf-p1-bits         INTEGER(0..255),
+    num-scf-p2-bits         INTEGER(0..255),
+
+    skip3                   OCTET STRING(SIZE(2)),
+    num-harq-payload        INTEGER(0..255),
+    num-sr-payload          INTEGER(0..255),
+    num-csi-p1-payload      INTEGER(0..255),
+    num-csi-p2-payload      INTEGER(0..255)
+}
+Channel ::=ENUMERATED
+{
+    unknown0        (0),
+    pucch-fmt1      (1),
+    pucch-fmt2      (2),
+    pucch-fmt3      (3),
+    pucch-fmt4      (4),
+    pusch         (5)
+}
+
+
+END

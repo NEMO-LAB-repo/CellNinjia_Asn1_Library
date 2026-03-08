@@ -1,0 +1,114 @@
+NR5G-MAC-DCI-Info DEFINITIONS ::=BEGIN
+
+NR5G-MAC-DCI-Info-S-H ::=SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    skip                        OCTET STRING(SIZE(11)),
+    num-records                 INTEGER(0..255)
+}
+
+-- Record Header -- 
+NR5G-MAC-DCI-Info-R-H ::=SEQUENCE
+{
+    slot                  INTEGER(0..255),
+    skip1                 BIT STRING(SIZE(6)),
+    numerology            Numerology,
+
+    skip3                 BIT STRING(SIZE(6)),
+    frame                 INTEGER(0..1023),
+    num-dci               INTEGER(0..255),
+    skip2                 OCTET STRING(SIZE(3))
+}
+Numerology ::=ENUMERATED
+{
+    unknown0                    (0),        
+    n-30khz                       (1),
+    unknown2                    (2)
+}
+
+-- DCI Header --
+NR5G-MAC-DCI-Info-DCI-H ::=SEQUENCE
+{
+    skip3                 BIT STRING(SIZE(2)),
+    raw-dci-include       INTEGER(0..1),
+    skip5               BIT STRING(SIZE(1)),
+    aggregation-level     Aggregation-Level,
+    dci-format            DCI-Format,
+    rnti-type            RNTI-Format,
+    skip4                 BIT STRING(SIZE(19))
+}
+Aggregation-Level ::=ENUMERATED
+{
+    level-1                     (0),
+    unknown1                    (1),
+    level-2                     (2),
+    level-3                     (3),
+    level-4                     (4)
+}
+DCI-Format ::=ENUMERATED
+{
+    ul-0-0                    (0),
+    ul-0-1                  (1),
+    dl-1-0                 (2), 
+    dl-1-1                (3)
+}
+RNTI-Format ::=ENUMERATED
+{
+    c-rnti                    (0),
+    t-c-rnti                  (1),
+    si-rnti                 (2), 
+    unknown3                (3),       
+    p-rnti                  (4),
+    unknown5                (5),    
+    unknown6                (6),
+    unknown7                (7),
+    ra-rnti                 (8)
+}
+-- NR5G-MAC-DCI-Info-DCI-UL --
+NR5G-MAC-DCI-Info-DCI-UL ::=SEQUENCE
+{
+    raw-dci-payload             OCTET STRING(SIZE(12)),
+
+    skip5                       BIT STRING(SIZE(3)),
+    pusch-tpc                   INTEGER(0..3),
+    skip10                      BIT STRING(SIZE(2)),
+    harq-id                     INTEGER(0..3),
+    rv                          INTEGER(0..3),
+    skip11                      BIT STRING(SIZE(1)),
+    mcs                         INTEGER(0..31),
+    ndi                         INTEGER(0..1),
+    skip12                      BIT STRING(SIZE(6)),
+
+    skip6                       OCTET STRING(SIZE(1)),
+
+    rbassignment                INTEGER(0..65535),
+
+    precoding-layer-info        INTEGER(0..63),
+    skip7                       BIT STRING(SIZE(5)),
+    dai1                        INTEGER(0..3),
+    skip8                       BIT STRING(SIZE(3)),
+
+    antenna-ports               INTEGER(0..255),
+
+    skip9                       OCTET STRING(SIZE(7))
+}
+
+-- NR5G-MAC-DCI-Info-DCI-DL --
+NR5G-MAC-DCI-Info-DCI-DL ::=SEQUENCE
+{
+    skip13                      BIT STRING(SIZE(2)),
+    dl-assignment-index         INTEGER(0..3),
+    tb1-new-data-indicator    INTEGER(0..1),
+    tb1-mcs                   INTEGER(0..31),
+    time-resource-assignment   INTEGER(0..15),
+    skip14                    BIT STRING(SIZE(2)),
+
+    pdsch-harq-feedback-timing  INTEGER(0..7),
+    pucch-resource-indicator    INTEGER(0..7),
+    tpc-command-for-sched-pucch INTEGER(0..3),
+
+    skip15                      BIT STRING(SIZE(18)),
+    harq-id                     INTEGER(0..15),
+    skip16                      BIT STRING(SIZE(18)) 
+}
+END

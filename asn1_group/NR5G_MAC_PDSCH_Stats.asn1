@@ -1,0 +1,38 @@
+NR5G-MAC-PDSCH-Stats DEFINITIONS ::= BEGIN
+
+NR5G-MAC-PDSCH-Stats-S-H  ::= SEQUENCE
+{
+    version                 INTEGER (0..4294967295),
+    skip0                  OCTET STRING (SIZE(3)),
+    num-record              INTEGER (0..255),
+
+    num-ca                  INTEGER (0..15),
+    num-total-slots         INTEGER (0..16777215),
+    skip1                   BIT STRING (SIZE(4)),
+
+    cumulative-bitmask      INTEGER (0..255),
+    skip2                   OCTET STRING (SIZE(7))
+}
+
+
+--Record--
+NR5G-MAC-PDSCH-Stats-Record ::= SEQUENCE
+{
+    carrier-id               INTEGER (0..4294967295),
+    num-slots-elapsed        INTEGER (0..4294967295),
+    num-pdsch-decode         INTEGER (0..4294967295),
+    num-crc-pass-tb          INTEGER (0..4294967295),
+    num-crc-fail-tb          INTEGER (0..4294967295),
+    num-retx                 INTEGER (0..4294967295),
+    ack-as-nack              INTEGER (0..4294967295),
+    harq-failure             INTEGER (0..4294967295),
+    crc-pass-tb-bytes        OCTET STRING (SIZE(8)),
+    crc-fail-tb-bytes        OCTET STRING (SIZE(8)),
+    tb-bytes                 OCTET STRING (SIZE(8)),
+    padding-bytes            OCTET STRING (SIZE(8)),
+    retx-bytes               OCTET STRING (SIZE(8))
+}
+
+
+
+END

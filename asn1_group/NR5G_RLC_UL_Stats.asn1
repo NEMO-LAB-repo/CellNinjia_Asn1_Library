@@ -1,0 +1,75 @@
+NR5G-RLC-UL-Stats DEFINITIONS ::= BEGIN
+
+NR5G-RLC-UL-Stats-S-H ::=SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    meta                        META,
+    all-lc                      All-LC
+}
+
+META ::= SEQUENCE
+{
+    skip                        BIT STRING(SIZE(5)),
+    reason                      Reason,
+    num-lc-logged              INTEGER(0..255),
+    skip1                      OCTET STRING(SIZE(2)),
+    cumulative-lc-bmask       INTEGER(0..255),
+    skip2                      OCTET STRING(SIZE(3)),
+    configured-lc-bmask       INTEGER(0..255),
+    skip3                      OCTET STRING(SIZE(7))
+}
+Reason ::=ENUMERATED
+{
+    unknown0                   (0),
+    periodic                   (1),
+    rrc-recfg              (2),
+    unknown3                   (3),
+    rrc-release              (4)
+}
+
+All-LC ::= SEQUENCE
+{
+    total-rlc-invalid-status-pdus      INTEGER(0..65535),
+    total-poll-expiry              INTEGER(0..65535),
+    total-retx-pdus              INTEGER(0..4294967295),
+    total-retx-bytes            INTEGER(0..4294967295),
+    skip0                     OCTET STRING(SIZE(4))
+}
+
+-- NR5G-RLC-UL-Stats-LC ::= SEQUENCE
+NR5G-RLC-UL-Stats-LC ::=SEQUENCE
+{
+    skip0                     BIT STRING(SIZE(5)),
+    lcid                      INTEGER(0..7),
+    skip1                     BIT STRING(SIZE(10)),
+    tx-next-ack               INTEGER(0..262143),   
+    skip2                     BIT STRING(SIZE(4)),
+    skip3                     OCTET STRING(SIZE(27)),
+
+    current-tx-win-pdus       INTEGER(0..65535),
+    skip4                     OCTET STRING(SIZE(2)),
+    total-retx-pdus           INTEGER(0..65535),
+    skip5                     OCTET STRING(SIZE(2)),
+    current-tx-win-bytes         INTEGER(0..4294967295),
+    skip6                     OCTET STRING(SIZE(4)),
+    total-tx-pdus             INTEGER(0..4294967295),
+    skip7                     OCTET STRING(SIZE(4)),
+    total-tx-bytes            INTEGER(0..4294967295),
+    skip8                     OCTET STRING(SIZE(4)),
+    total-poll-pdus           INTEGER(0..65535),
+    skip9                     OCTET STRING(SIZE(2)),
+    total-high-prio-pdus-tx       INTEGER(0..65535),
+    skip10                    OCTET STRING(SIZE(2)),
+    total-high-prio-bytes-tx      INTEGER(0..4294967295),
+    skip11                    OCTET STRING(SIZE(4)),
+    total-txed-status-pdus       INTEGER(0..4294967295),
+    total-rlc-nack-status-pdus       INTEGER(0..4294967295),
+    last-valid-status-pdu-received-time       INTEGER(0..4294967295),
+    total-rxed-status-pdu       INTEGER(0..4294967295),
+    skip12                    OCTET STRING(SIZE(8))
+
+}
+
+
+
+END

@@ -1,0 +1,74 @@
+LTE-PDCP-UL-Delay-Statistics DEFINITIONS ::=BEGIN
+
+LTE-PDCP-UL-Delay-Statistics-S-HEADER ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+    skip0                        OCTET STRING (SIZE (3)),
+    num-rbs                      INTEGER (0..255),
+    num-rst                      INTEGER (0..255),
+    skip1                        OCTET STRING (SIZE (2))
+}
+
+LTE-PDCP-UL-Delay-Statistics-RBs ::=SEQUENCE
+{
+    rb-cfg-id                    INTEGER (0..255),
+    discard-timer                INTEGER (0..65535),
+    skip2                        OCTET STRING (SIZE (1)),
+    total                        Total
+}
+
+Total ::=SEQUENCE
+{
+    pdcp-delay-pkt-count          Pdcp-delay-pkt-count,
+    pdcp-delay-pkt-count2         Pdcp-delay-pkt-count2,
+    pdcp-delay-pkt-count3         Pdcp-delay-pkt-count3,
+    
+    num-discard-pdu               INTEGER (0..255),
+    discard-pdu-bytes             INTEGER (0..255),
+    skip3                         OCTET STRING (SIZE (10))
+}
+
+Pdcp-delay-pkt-count ::=SEQUENCE
+{
+    data-8                        INTEGER (0..4294967295),
+    data-8-16                     INTEGER (0..4294967295),
+    data-16-24                    INTEGER (0..4294967295),
+    data-24-32                    INTEGER (0..4294967295),
+    data-32-40                    INTEGER (0..4294967295),
+    data-40-48                    INTEGER (0..4294967295),
+    data-48-56                    INTEGER (0..4294967295),
+    data-56-64                    INTEGER (0..4294967295),
+    data-64-72                    INTEGER (0..4294967295),
+    data-72-80                    INTEGER (0..4294967295)
+}
+
+Pdcp-delay-pkt-count2 ::=SEQUENCE
+{
+    data-80-88                    INTEGER (0..4294967295),
+    data-88-96                    INTEGER (0..4294967295),
+    data-96-104                   INTEGER (0..4294967295),
+    data-104-112                  INTEGER (0..4294967295),
+    data-112-120                  INTEGER (0..4294967295),
+    data-120-128                  INTEGER (0..4294967295),
+    data-128-136                  INTEGER (0..4294967295),
+    data-136-144                  INTEGER (0..4294967295),
+    data-144-152                  INTEGER (0..4294967295),
+    data-152-160                  INTEGER (0..4294967295)
+}
+
+Pdcp-delay-pkt-count3 ::=SEQUENCE
+{
+    data-160-168                  INTEGER (0..4294967295),
+    data-168-176                  INTEGER (0..4294967295),
+    data-176-184                  INTEGER (0..4294967295),
+    data-184-192                  INTEGER (0..4294967295),
+    data-192-200                  INTEGER (0..4294967295),
+    data-200-208                  INTEGER (0..4294967295),
+    data-208-216                  INTEGER (0..4294967295),
+    data-216-224                  INTEGER (0..4294967295),
+    data-224-232                  INTEGER (0..4294967295),
+    data-232-240                  INTEGER (0..4294967295),
+    data-240                      INTEGER (0..4294967295)
+}
+
+END

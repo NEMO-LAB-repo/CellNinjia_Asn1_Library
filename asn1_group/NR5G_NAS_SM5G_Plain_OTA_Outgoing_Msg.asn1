@@ -1,0 +1,14 @@
+NR5G-NAS-SM5G-Plain-OTA-Outgoing-Msg DEFINITIONS ::=BEGIN
+
+NR5G-NAS-SM5G-Plain-OTA-Outgoing-Msg-S-H ::= SEQUENCE {
+    version                    INTEGER(0..4294967295),
+    rel-number                 INTEGER (0..255),
+    rel-number-major         INTEGER (0..255),
+    rel-number-minor         INTEGER (0..255),
+
+    skip0                    OCTET STRING (SIZE(2)),
+    pti                      INTEGER (0..255),
+    message-id               INTEGER (0..255)
+}
+END
+

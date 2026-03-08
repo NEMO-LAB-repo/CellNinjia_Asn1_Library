@@ -1,0 +1,97 @@
+NR5G-MAC-UCI-Information DEFINITIONS ::= BEGIN
+
+-- S-H --
+NR5G-MAC-UCI-Information-S-H ::= SEQUENCE
+{
+    major-version                     INTEGER(0..65535),
+    minor-version                     INTEGER(0..65535),
+    skip                        OCTET STRING(SIZE(11)),
+    num-records                 INTEGER(0..255)
+}
+
+-- R-H --
+NR5G-MAC-UCI-Information-R-H ::= SEQUENCE
+{
+    slot                  INTEGER(0..255),
+    skip1                 BIT STRING(SIZE(6)),
+    numerology            Numerology,
+
+    skip3                 BIT STRING(SIZE(6)),
+    frame                 INTEGER(0..1023),
+    num-uci-tx            INTEGER(0..255),
+    skip2                 OCTET STRING(SIZE(3))
+}
+Numerology ::=ENUMERATED
+{
+    unknown0                    (0),        
+    n-30khz                       (1),
+    unknown2                    (2)
+}
+
+-- UCI H --
+NR5G-MAC-UCI-Information-UCI-H ::= SEQUENCE
+{
+    skip1                 BIT STRING(SIZE(5)),
+    channel-type          Channel-Type,
+
+    skip2                 BIT STRING(SIZE(3)),
+    total-harq-ack-bits   INTEGER(0..7),
+    uci-request-bitmask   UCI-Request-Bitmask,
+    num-symbols           INTEGER(0..15),
+    skip3                 BIT STRING(SIZE(5)),
+
+    num-csf             INTEGER(0..3),
+    skip6                 BIT STRING(SIZE(1)),
+    num-sr              INTEGER(0..3),
+    skip4                 BIT STRING(SIZE(1)),
+
+    num-harq         INTEGER(0..255),
+
+    skip5                 OCTET STRING(SIZE(3))
+}
+Channel-Type ::=ENUMERATED
+{
+    unknown0                    (0),        
+    pucch-fmt1                   (1),
+    unknown2                    (2),
+    pucch-fmt3                   (3),
+    unknown4                    (4),
+    pusch-fmt1                  (5)
+}
+UCI-Request-Bitmask ::=ENUMERATED
+{
+    unknown0                    (0),        
+    ack-nack                   (1),
+    csi-request                (2),
+    unknown3                    (3),
+    sr                       (4),
+    unknown5                   (5),
+    unknown6                   (6),
+    unknown7                   (7)
+}
+
+-- HARQ DATA -- 
+NR5G-MAC-UCI-Information-HARQ-DATA ::= SEQUENCE
+{
+    harq-id              INTEGER(0..15),
+    skip1                BIT STRING(SIZE(8)),
+    bit-offset         INTEGER(0..15),
+    crc-status         INTEGER(0..1),
+    skip2                BIT STRING(SIZE(15))
+}
+
+--SR DATA --
+NR5G-MAC-UCI-Information-SR-DATA ::= SEQUENCE
+{
+    skip1                BIT STRING(SIZE(4)),
+    sr-request           INTEGER(0..1),
+    skip2                BIT STRING(SIZE(27))
+}
+
+-- CSF DATA --
+NR5G-MAC-UCI-Information-CSF-DATA ::= SEQUENCE
+{
+    report-id           INTEGER(0..15),
+    skip1                BIT STRING(SIZE(28))
+}
+END

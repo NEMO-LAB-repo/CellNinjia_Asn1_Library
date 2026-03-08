@@ -1,0 +1,45 @@
+NR5G-LL1-FW-Serving-FTL-v7 DEFINITIONS ::= BEGIN
+
+
+NR5G-LL1-FW-Serving-FTL-v7-S-H ::= SEQUENCE
+{
+    version                 INTEGER (0..4294967295),
+
+    skip0                   BIT STRING (SIZE(6)),
+    ssb-or-trs              SSB-OR-TRS,
+    cell-id                INTEGER (0..1023),
+    subfn                  INTEGER (0..15),
+    starting-sfn           INTEGER (0..1023),
+
+    skip1                   OCTET STRING (SIZE(20))
+}
+
+SSB-OR-TRS ::= ENUMERATED
+{
+    ssb0 (0),
+    trs (1),
+    ssb2 (2),
+    trs3 (3)
+}
+
+
+--snr--
+NR5G-LL1-FW-Serving-FTL-v7-SNR ::= SEQUENCE
+{
+    snr1-raw            OCTET STRING (SIZE(16)),
+    snr2-raw            OCTET STRING (SIZE(16)),
+    snr3-raw            OCTET STRING (SIZE(16)),
+    snr4-raw            OCTET STRING (SIZE(16))
+}
+
+--Content --
+NR5G-LL1-FW-Serving-FTL-v7-Content ::= SEQUENCE
+{
+    nrarfcn                INTEGER (0..4294967295),
+    dl-frequency          INTEGER (0..4294967295),
+    dl-frequency-low      INTEGER (0..4294967295),
+    frequency-error        INTEGER (0..4294967295),
+    frame-offset-vstmr-ref INTEGER (0..4294967295)
+}
+
+END

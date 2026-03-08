@@ -1,0 +1,66 @@
+LTE-ML1-Random-Access-Response-MSG2-Report DEFINITIONS ::= BEGIN
+
+LTE-ML1-Random-Access-Response-MSG2-Report-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+
+    skip0                        BIT STRING (SIZE (22)),
+    cell-index                   Carrier-Type,
+    skip1                        BIT STRING (SIZE (7)),
+    rnti-value                   INTEGER (0..32767),
+    timing-advance-included      Timing-advance-included,
+    rach-procedure-type          Rach-procedure-type,
+    rACH-Procedure-Mode          RACH-Procedure-Mode,
+    rNTI-Type                    RNTI-Type,
+
+    system-frame-number          INTEGER(0..15),
+    skip2                        BIT STRING (SIZE (2)),
+    sub-frame-number             INTEGER(0..1023),
+
+    tIMING-ADVANCE               INTEGER (0..255),
+    skip3                        BIT STRING (SIZE (8))
+}
+
+Carrier-Type ::=ENUMERATED
+{
+    pcc                         (0),
+    scc                         (1),
+    scc2                        (2)         
+}
+
+Timing-advance-included ::=ENUMERATED
+{
+    not-included                (0),--guess
+    included                    (1),
+    unknown                     (2)
+}
+
+Rach-procedure-type ::=ENUMERATED
+{
+    contention-Based            (0),
+    non-contention-based        (1)
+}
+
+RACH-Procedure-Mode ::=ENUMERATED
+{
+    initial-Access              (0),
+    unknown1                    (1),
+    unknown2                    (2),
+    unknown3                    (3),
+    unknown4                    (4)
+}
+
+RNTI-Type ::=ENUMERATED
+{
+    unknown0                    (0),
+    unknown1                    (1),
+    unknown2                    (2),
+    unknown3                    (3),
+    unknown4                    (4),
+    unknown5                    (5),
+    unknown6                    (6),
+    unknown7                    (7),
+    temp-C                      (8)
+}
+
+END

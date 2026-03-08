@@ -1,0 +1,201 @@
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623 DEFINITIONS ::=BEGIN
+
+--S_H--
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623-S-H ::= SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    skip                        OCTET STRING(SIZE(3)),
+    num-records                 INTEGER(0..255)
+}
+
+--R_H--
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623-R-H ::= SEQUENCE
+{
+    slot                      INTEGER(0..255),
+    skip0                     BIT STRING(SIZE(5)),
+    numerology                Numerology,
+
+    num-carrier               INTEGER(0..63),
+    frame                    INTEGER(0..1023)
+}
+Numerology ::=ENUMERATED
+{
+    n-15khz                    (0),        
+    n-30khz                       (1),
+    n-60khz                    (2),
+    n-120khz                   (3),
+    n-240khz                   (4),
+    n-480khz                   (5),
+    n-960khz                   (6)
+}
+
+--Carrier Header--
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623-Carrier-Header ::= SEQUENCE
+{
+    skip0                     BIT STRING(SIZE(12)),
+    phyhan-bit-mask           PHYHAN-Bit-Mask,
+    skip1                      OCTET STRING(SIZE(2)),
+    ul-slot-fstmr          INTEGER(0..4294967295),
+    total-timing-adj       INTEGER(0..65535),
+    mac-nta                 INTEGER(0..65535),
+    skip2                     BIT STRING(SIZE(5)),
+    timing-adj-tc       INTEGER(0..1023),
+    timing-adj-adv-ret  INTEGER(0..1),
+    skip3                     OCTET STRING(SIZE(6))
+}
+PHYHAN-Bit-Mask ::= ENUMERATED
+{
+    unknown0                (0),
+    pusch-bm            (1),
+    pucch-bm            (2),
+    unknown3            (3),
+    srs-bm              (4),
+    unknown5            (5),
+    unknown6            (6),
+    unknown7            (7),
+    prach-bm           (8)
+}
+
+--PUSCH--
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623-PUSCH ::= SEQUENCE
+{
+    rb-start               INTEGER(0..511),
+    skip0                 BIT STRING(SIZE(2)),
+    mcs                   INTEGER(0..31),
+    rv-index           INTEGER(0..3),
+    skip1                 BIT STRING(SIZE(1)),
+    harq-id            INTEGER(0..7),
+    skip2           BIT STRING(SIZE(10)),
+
+    num-rb                INTEGER(0..255),
+
+    tx-slot-offset      INTEGER(0..15),
+    num-symbols          INTEGER(0..15),
+    skip3                BIT STRING(SIZE(5)),
+    uci-request-mask     INTEGER(0..3),
+    skip4               BIT STRING(SIZE(9)),
+
+    tb-size             INTEGER(0..65535),
+
+    skip5              BIT STRING(SIZE(2)),
+    dmrs-symbol-bitmask  INTEGER(0..4095),
+    skip6                BIT STRING(SIZE(3)),
+
+    rnti-value          INTEGER(0..65535),
+    skip7                BIT STRING(SIZE(19)),
+    skip8               OCTET STRING(SIZE(3)),
+
+    num-harq-ack-bits  INTEGER(0..7),
+    skip9               BIT STRING(SIZE(1)),
+
+    num-csf-p1-bits     INTEGER(0..255),
+    skip10             OCTET STRING(SIZE(2)),
+    modulation-order   Modulation-Order,
+    skip11            BIT STRING(SIZE(3)),
+    srs-res-ind       INTEGER(0..3),
+
+    cb-size           INTEGER(0..32767),
+    skip12           BIT STRING(SIZE(4)),
+    code-rate        INTEGER(0..4095),
+    transform-precoding INTEGER(0..1),
+
+    skip13           BIT STRING(SIZE(4)),
+    num-cbs         INTEGER(0..15),
+    zc-value        INTEGER(0..511),
+    skip14          BIT STRING(SIZE(1)),
+    k-prime-value   INTEGER(0..16383),
+
+
+    skip15          BIT STRING(SIZE(8)),
+    num-gap-rbs     INTEGER(0..15),
+    rbg-bitmap      INTEGER(0..1048575)
+}
+Modulation-Order ::= ENUMERATED
+{
+    unknown0                (0),
+    qpsk                     (1),
+    qam16                    (2),
+    qam64                    (3),
+    qam256                   (4)
+}
+
+
+--SRS_H--
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623-SRS-H ::= SEQUENCE
+{
+    num-srs            INTEGER(0..255),
+    skip0              OCTET STRING(SIZE(3))
+}
+
+--SRS--
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623-SRS-Payload ::= SEQUENCE
+{
+    resource-id           INTEGER(0..3),
+    skip0                 BIT STRING(SIZE(19)),
+    config-index         INTEGER(0..3),
+    skip1                 BIT STRING(SIZE(4)),
+    starting-symbol        INTEGER(0..15),
+    skip2                 BIT STRING(SIZE(33)),
+
+    re-start-0           INTEGER(0..65535),
+    re-start-1           INTEGER(0..65535),
+    re-start-2           INTEGER(0..65535),
+    re-start-3           INTEGER(0..65535)
+}
+
+--PRACH--
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623-PRACH ::= SEQUENCE
+{
+    resource-allocation     INTEGER(0..255),
+    skip0                   BIT STRING(SIZE(4)),
+    zc-root-seq         INTEGER(0..2047),
+    skip1                  BIT STRING(SIZE(9)),
+    zc-cylic-shift  INTEGER(0..65535),
+    skip2                  OCTET STRING(SIZE(2))
+}
+
+--PUCCH_H--
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623-PUCCH-H ::= SEQUENCE
+{
+    num-pucch           INTEGER(0..255),
+    skip0              OCTET STRING(SIZE(3))
+}
+
+--PUCCH-Payload--
+NR5G-MAC-UL-Physical-Channel-Schedule-Report-v196623-PUCCH-Payload ::= SEQUENCE
+{
+    skip0                BIT STRING(SIZE(6)),
+    uci-request-bitmask  INTEGER(0..7),
+    pucch-format         PUCCH-Format,
+    skip1                BIT STRING(SIZE(8)),
+
+    starting-rb        INTEGER(0..1023),
+    skip2               BIT STRING(SIZE(11)),
+
+    num-harq-ack-bits  INTEGER(0..7),
+    second-hop-rb   INTEGER(0..511),
+    skip3               BIT STRING(SIZE(7)),
+    num-rb         INTEGER(0..15),
+
+    num-uci-p1-bits  INTEGER(0..255),
+
+    skip4              BIT STRING(SIZE(9)),
+    time-occ-index  INTEGER(0..7),
+    m0                INTEGER(0..15),
+    skip5              OCTET STRING(SIZE(2)),
+    dft-occ-index INTEGER(0..7),
+    dft-occ-length INTEGER(0..7),
+    skip6              BIT STRING(SIZE(18))
+
+}
+
+PUCCH-Format ::= ENUMERATED
+{
+    unknown0                    (0),        
+    pucch-fmt1                   (1),
+    pucch-fmt2                   (2),
+    pucch-fmt3                   (3),
+    pucch-fmt4                   (4),
+    unknown5                  (5)
+}
+END

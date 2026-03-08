@@ -1,0 +1,72 @@
+NR5G-L2-UL-TB DEFINITIONS ::= BEGIN
+
+-- S-H --
+NR5G-L2-UL-TB-S-H ::= SEQUENCE
+{
+    version                     INTEGER(0..255),
+    skip                        OCTET STRING(SIZE(3)),
+    num-tti                     INTEGER(0..255),
+    skip1                       OCTET STRING(SIZE(3))
+}
+
+-- TTI-H --
+NR5G-L2-UL-TB-TTI-H ::= SEQUENCE
+{
+    slot-number              INTEGER(0..255),
+    skip1                   BIT STRING(SIZE(14)),
+    fn                     INTEGER(0..1023),
+    skip2                   BIT STRING(SIZE(4)),
+    num-tb                INTEGER(0..15),
+    skip3                   OCTET STRING(SIZE(3))
+}
+
+-- TB --
+NR5G-L2-UL-TB-Content ::= SEQUENCE
+{
+    skip0                   BIT STRING(SIZE(9)),
+    harq                INTEGER(0..15),
+    skip1                   BIT STRING(SIZE(7)),
+    end-pdu-seg         End-Pdu-Seg,
+    skip2                   BIT STRING(SIZE(3)),
+    num-complete-pdu    INTEGER(0..127),
+    skip3                   BIT STRING(SIZE(1)),
+
+    grant-size         INTEGER(0..4294967295),
+    bytes-build       INTEGER(0..4294967295),
+    skip4                   OCTET STRING(SIZE(1)),
+    mce-build-bitmask   INTEGER(0..255),
+
+    skip5                   BIT STRING(SIZE(4)),
+    bsr-type             Bsr-Type,
+    bsr-reason           Bsr-Reason,
+    skip6                   BIT STRING(SIZE(8)),
+
+    mce-length         INTEGER(0..63),
+    skip7                   OCTET STRING(SIZE(3))
+
+}
+End-Pdu-Seg ::= ENUMERATED
+{
+    false                    (0),        
+    true                     (1)
+}
+Bsr-Type ::= ENUMERATED
+{
+    no-bsr                    (0),        
+    short-bsr                   (1),
+    long-bsr                    (2),
+    unknown3                   (3),
+    unknown4                   (4),
+    cancelled-bsr            (5)
+}
+Bsr-Reason ::= ENUMERATED
+{
+    no-trigger                (0),
+    periodic-timer-expires (1),
+    unknown2                (2),
+    unknown3                (3),
+    high-data-arrivaled (4),
+    periodic-or-high-data-arrival (5)
+}
+
+END

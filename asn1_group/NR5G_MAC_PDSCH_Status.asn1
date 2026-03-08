@@ -1,0 +1,101 @@
+NR5G-MAC-PDSCH-Status DEFINITIONS ::=BEGIN
+
+-- S-H --
+NR5G-MAC-PDSCH-Status-S-H ::=SEQUENCE
+{
+    version                     INTEGER(0..255),
+    skip                        OCTET STRING(SIZE(14)),
+    num-records                 INTEGER(0..255)
+}
+
+--R-H -
+NR5G-MAC-PDSCH-Status-R-H ::=SEQUENCE
+{
+    slot                  INTEGER(0..255),
+    skip1                 BIT STRING(SIZE(6)),
+    numerology            Numerology,
+
+    skip3                 BIT STRING(SIZE(6)),
+    frame                 INTEGER(0..1023),
+    num-pdsch               INTEGER(0..255),
+    skip2                 OCTET STRING(SIZE(3))
+}
+Numerology ::=ENUMERATED
+{
+    unknown0                    (0),        
+    n-30khz                       (1),
+    unknown2                    (2)
+}
+
+-- PDSCH Status Info --
+NR5G-MAC-PDSCH-Status-Info ::=SEQUENCE
+{
+    skip1                 BIT STRING(SIZE(9)),
+
+    slot-number      INTEGER(0..31),
+    sfn              INTEGER(0..1023),
+
+    skip2                 BIT STRING(SIZE(3)),
+    bandwidth       INTEGER(0..15),
+    skip13                BIT STRING(SIZE(1)),
+
+    erfcn            INTEGER(0..4194303),
+    physicall-cell-id   INTEGER(0..1023),
+
+    skip3                 BIT STRING(SIZE(2)),
+    tbsize            INTEGER(0..131071),
+    skip4                 BIT STRING(SIZE(6)),
+    mcs               INTEGER(0..31),
+    skip5                BIT STRING(SIZE(3)),
+
+    harq-or-mbsfn-area-id   INTEGER(0..15),
+    rv                   INTEGER(0..3),
+    num-rb               INTEGER(0..511),
+
+    skip6                 BIT STRING(SIZE(1)),
+    num-layers-raw      INTEGER(0..3),
+    skip11                 BIT STRING(SIZE(4)),
+    k1-or-pmch-id       INTEGER(0..7),
+    rnti-type           INTEGER(0..15),
+
+
+    skip7                 BIT STRING(SIZE(7)),
+    ndi                 INTEGER(0..1),
+    skip8                 BIT STRING(SIZE(7)),
+
+    num-retx            INTEGER(0..7),
+
+    num-rx              Num-RX,
+    skip9                 BIT STRING(SIZE(2)),
+    mod-type            Mod-Type,
+
+    skip10              OCTET STRING(SIZE(1))
+}
+Num-RX ::=ENUMERATED
+{
+    unknown0                    (0),
+    mimo2x2                         (1),
+    unknown2                    (2),
+    mimo4x4                       (3)
+}
+Mod-Type ::=ENUMERATED
+{
+    unknown0                    (0),
+    qpsk                        (1),
+    unknown2                    (2),
+    unknown3                    (3),
+    unknown4                    (4),
+    qam-16                      (5),
+    unknown6                    (6),
+    unknown7                    (7),
+    unknown8                    (8),
+    qam-64                      (9),
+    unknown10                   (10),
+    unknown11                   (11),
+    qam-256                     (12),
+    unknown13                   (13),
+    unknown14                   (14),
+    unknown15                   (15)
+}
+
+END

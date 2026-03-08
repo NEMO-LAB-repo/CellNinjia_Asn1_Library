@@ -1,0 +1,92 @@
+LTE-UE-Identification-Message-MSG3-Report DEFINITIONS ::= BEGIN
+
+LTE-UE-Identification-Message-MSG3-Report-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+
+    skip0                        BIT STRING(SIZE(5)),
+    versions-modulation-type     ModulationType,
+
+    skip1                        BIT STRING(SIZE(6)),
+    cell-index                   Carrier-Type,
+
+    skip2                        BIT STRING(SIZE(8)),
+
+    sfn                          INTEGER (0..1023),
+    skip3                        BIT STRING(SIZE(4)),
+    riv                          INTEGER (0..255),
+    sub-fn                       INTEGER (0..7),
+    cqi                          Cqi,
+    ul-delay                     Ul-Delay,
+    tpc                          INTEGER (0..3),
+    mcs                          Mcs,
+
+    hopping-flag                 Hopping-flag,
+    transport-Block-Size-Index   Transport-Block-Size-Index,--guess
+    redundancy-Version-Index     INTEGER (0..3),
+    num-Resource-Blocks          INTEGER (0..31),
+    starting-Resource-Block      INTEGER (0..127),
+    skip4                        BIT STRING(SIZE(5)),
+
+    skip5                        BIT STRING(SIZE(2)),
+    harq-id                      INTEGER (0..7),
+    skip6                        BIT STRING(SIZE(3))
+}
+
+ModulationType ::= ENUMERATED
+{
+    unknown0    (0),
+    qpsk        (1),
+    i16qam      (2),
+    i64qam      (3),
+    i256qam      (4)
+}
+
+Carrier-Type ::=ENUMERATED
+{
+    pcc                         (0),
+    scc                         (1),
+    scc2                        (2)         
+}
+
+Cqi ::=ENUMERATED
+{
+    disabled                    (0),
+    abled                       (1)--guess
+}
+
+Ul-Delay ::=ENUMERATED
+{
+    dont-delay                  (0),
+    delay                       (1)--guess
+}
+
+Mcs ::=ENUMERATED
+{
+    mcs-2                       (0),
+    unkown1                     (1),
+    unkown2                     (2),
+    unkown3                     (3),
+    unkown4                     (4)
+}
+
+Hopping-flag ::=ENUMERATED
+{
+    disabled                    (0),
+    abled                       (1)
+}
+
+Transport-Block-Size-Index ::=ENUMERATED
+{
+    unknown0                    (0),
+    unknown1                    (1),
+    tBS-INDEX-2                 (2),
+    unknown3                    (3),
+    unknown4                    (4),
+    unknown5                    (5),
+    unknown6                    (6),
+    unknown7                    (7),
+    unknown8                    (8)
+}
+
+END

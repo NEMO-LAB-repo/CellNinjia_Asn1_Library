@@ -1,0 +1,39 @@
+NR5G-MAC-UL-TB-Stats DEFINITIONS ::= BEGIN
+
+--S_H--
+NR5G-MAC-UL-TB-Stats-S-H ::= SEQUENCE
+{
+    version                 INTEGER (0..4294967295),
+    skip0                 OCTET STRING (SIZE(3)),
+    num-record              INTEGER (0..255),
+    skip1                 OCTET STRING (SIZE(4))
+}
+
+--Record--
+NR5G-MAC-UL-TB-Stats-Record ::= SEQUENCE
+{
+    tb-new-tx-bytes          INTEGER (0..4294967295),
+    skip0                 OCTET STRING (SIZE(4)),
+    tb-retx-bytes          INTEGER (0..4294967295),
+    skip1                 OCTET STRING (SIZE(4)),
+    num-mcs              INTEGER (0..4294967295),
+    skip2                 OCTET STRING (SIZE(4)),
+    num-prb              INTEGER (0..4294967295),
+    skip3                 OCTET STRING (SIZE(4)),
+    phr              INTEGER (0..4294967295),
+    skip4                 OCTET STRING (SIZE(4)),
+    max-power              INTEGER (0..4294967295),
+    num-new-tx-tbs          INTEGER (0..4294967295),
+    num-retx-tb          INTEGER (0..4294967295),
+    ri              INTEGER (0..4294967295),
+    cqi             INTEGER (0..4294967295),
+    num-phr              INTEGER (0..4294967295),
+    skip5                 OCTET STRING (SIZE(4)),
+    num-ulsch-sched          INTEGER (0..4294967295),
+    num-no-ulsch-sched          INTEGER (0..4294967295),
+    pcmax              INTEGER (0..65535),
+    flush-gap-cnt          INTEGER (0..65535)
+}
+
+
+END

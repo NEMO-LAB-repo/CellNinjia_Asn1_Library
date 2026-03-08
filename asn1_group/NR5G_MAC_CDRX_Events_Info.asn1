@@ -1,0 +1,96 @@
+NR5G-MAC-CDRX-Events-Info DEFINITIONS ::=BEGIN
+
+NR5G-MAC-CDRX-Events-Info-S-H ::=SEQUENCE
+{
+    version                    INTEGER(0..4294967295),
+
+    skip0                       OCTET STRING(SIZE(11)),
+    number-records             INTEGER(0..255),
+
+    skip1                       BIT STRING(SIZE(7)),
+    drx-enabled                 INTEGER(0..1),
+
+    skip2                       OCTET STRING(SIZE(1)),
+    on-duration-time            INTEGER(0..255),
+    skip3                       OCTET STRING(SIZE(1)),
+    inactivity-timer            INTEGER(0..255),
+    skip4                       OCTET STRING(SIZE(1)),
+    dl-harq-rtt-timer           INTEGER(0..255),
+    ul-harq-rtt-timer           INTEGER(0..255),
+    dl-retransmission-timer     INTEGER(0..255),
+    skip5                       OCTET STRING(SIZE(1)),
+    ul-retransmission-timer     INTEGER(0..255),
+    skip6                       OCTET STRING(SIZE(1)),
+    long-drx-cycle-start-offset INTEGER(0..255),
+    skip7                       OCTET STRING(SIZE(3)),
+    long-drx-cycle         INTEGER(0..255),
+    skip8                       OCTET STRING(SIZE(1)),
+    short-drx-cycle-enabled     INTEGER(0..255),
+    short-drx-cycle-timer INTEGER(0..255),
+    short-drx-cycle        INTEGER(0..255),
+    skip9                       OCTET STRING(SIZE(1)),
+    drx-slot-offset        INTEGER(0..255),
+    skip10                      OCTET STRING(SIZE(1))
+}
+
+NR5G-MAC-CDRX-Events-Info-Record ::=SEQUENCE
+{
+    skip0                       BIT STRING(SIZE(4)),
+    slot-number                INTEGER(0..127),
+    system-frame-number         INTEGER(0..1023),
+
+    skip1                       BIT STRING(SIZE(5)),
+    reason                      REASON,
+    current-state               Current-State,
+
+    current-ref-counft          INTEGER(0..4294967295),
+
+    on-duration-start           On-Duration-Start,
+    short-cycle-timer           Short-Cycle-Timer,
+    last-grant-timer         Last-Grant-Timer,
+
+    active-procudure            INTEGER(0..255),
+    skip3                     OCTET STRING(SIZE(3))
+}
+REASON ::=ENUMERATED
+{
+    inact-expired                   (0),
+    ondur-timer-running          (1),
+    ondur-expired              (2),
+    inact-timer-running          (3),
+    unknown4                    (4),
+    unknown5                    (5),
+    unknown6                    (6),
+    config-deconfig     (7),
+    external-proc       (8),
+    unknown9                    (9)
+}
+Current-State ::=ENUMERATED
+{
+    inactive                      (0),
+    ondur-inact-timer             (1),
+    tx-pending                    (2)
+}
+
+On-Duration-Start ::=SEQUENCE
+{
+    skip0                       BIT STRING(SIZE(7)),
+    slot-number               INTEGER(0..127),
+    frame-number            INTEGER(0..1023),
+    skip1                       OCTET STRING(SIZE(1))
+}
+Short-Cycle-Timer ::=SEQUENCE
+{
+    skip0                       BIT STRING(SIZE(7)),
+    slot-number               INTEGER(0..127),
+    frame-number            INTEGER(0..1023),
+    skip1                      OCTET STRING(SIZE(1))
+}
+Last-Grant-Timer ::=SEQUENCE
+{
+    skip0                       BIT STRING(SIZE(7)),
+    slot-number               INTEGER(0..127),
+    frame-number            INTEGER(0..1023),
+    skip1                      OCTET STRING(SIZE(1))
+}
+END

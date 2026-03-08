@@ -1,0 +1,21 @@
+LTE-Contention-Resolution-Message-MSG4-Report DEFINITIONS ::= BEGIN
+
+LTE-Contention-Resolution-Message-MSG4-Report-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+    skip0                        BIT STRING(SIZE(24)),
+
+    skip1                        BIT STRING(SIZE(3)),
+    uL-ACK-Timing-Sub-fn         INTEGER (0..15),
+    uL-ACK-Timing-SFN            INTEGER (0..1023),
+    contention-Result            Contention-Result,
+    sub-fn                       INTEGER (0..15),
+    versions-sfn                 INTEGER (0..1023)
+}
+Contention-Result ::=ENUMERATED
+{
+    no-pass                      (0),
+    pass                         (1)
+}
+
+END

@@ -1,0 +1,49 @@
+NR5G-RLC-UL-Status-PDU DEFINITIONS ::= BEGIN
+
+NR5G-RLC-UL-Status-PDU-S-H ::= SEQUENCE 
+{
+    version      INTEGER(0..4294967295),
+    num-status-pdu  INTEGER(0..255),
+    num-status-pdu-dropped    INTEGER(0..63),
+    skip0        BIT STRING(SIZE(2)),
+    skip1        OCTET STRING(SIZE(2))
+}
+
+NR5G-RLC-UL-Status-PDU-PDUContent ::= SEQUENCE
+{
+    slot-number    INTEGER(0..255),
+    skip0          BIT STRING(SIZE(14)),
+    fn             INTEGER(0..1023),
+    skip1          BIT STRING(SIZE(1)),
+    sn-length      SN-Length,
+    skip2          BIT STRING(SIZE(2)),
+    lcid           INTEGER(0..15),
+    size           INTEGER(0..127),
+
+    skip3          BIT STRING(SIZE(7)),
+    pdu-type      PDU-Type,
+    skip4          BIT STRING(SIZE(1)),
+    action-type    ACTION-Type,
+    pad-size       INTEGER(0..3),
+    skip5          BIT STRING(SIZE(5)),
+
+    skip6          OCTET STRING(SIZE(12))
+}
+
+SN-Length ::= ENUMERATED
+{
+    sn-12 (0),
+    sn-18 (1)
+}
+
+PDU-Type ::= ENUMERATED
+{
+    ack-only (0),
+    nack (1)
+}
+ACTION-Type ::= ENUMERATED
+{
+    trigger     (0),
+    update       (1)
+}
+END

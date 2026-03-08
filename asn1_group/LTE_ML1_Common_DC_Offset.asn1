@@ -1,0 +1,36 @@
+LTE-ML1-Common-DC-Offset DEFINITIONS ::=BEGIN
+
+LTE-ML1-Common-DC-Offset-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+
+    skip0                        BIT STRING(SIZE(7)),
+    update                       Update,
+
+    band                         INTEGER (0..255),
+
+    skip1                        BIT STRING(SIZE(4)),
+    bandwidth-index              Bandwidth-index, 
+
+    e-arfcn                      INTEGER (0..4294967295)
+}
+
+Update ::=ENUMERATED
+{
+    table-was-retrieved         (0),
+    table-was-updated           (1)
+}
+
+Bandwidth-index ::=ENUMERATED
+{
+    unknown0                    (0),
+    unknown1                    (1),
+    unknown2                    (2),
+    mhz-10                      (3),
+    mhz-15                      (4),
+    unknown5                    (5),
+    unknown6                    (6),
+    unknown7                    (7),
+    unknown8                    (8)
+}
+END

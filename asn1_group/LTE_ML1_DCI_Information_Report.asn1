@@ -1,0 +1,158 @@
+DCIReportModule DEFINITIONS ::= BEGIN
+
+DCIReport ::= SEQUENCE 
+{
+    dcireport-S-H  DCIReport-S-Header
+}
+
+DCIReport-S-Header ::= SEQUENCE
+{
+    version                 INTEGER (0..255),
+    numinfometaheader       NumInfoMetaHeaderStructure,
+    skip0                   INTEGER (0..255)
+}
+
+NumInfoMetaHeaderStructure ::= SEQUENCE
+{
+    duplexmode              DuplexMode,
+    skip1                   INTEGER (0..15),
+    numofrecords            INTEGER (0..31),
+    subframecfg             INTEGER (0..15),
+    skip2                   INTEGER (0..3)
+}
+
+DuplexMode ::= ENUMERATED
+{
+    fdd     (0),
+    unknown (1)
+}
+
+RecordHeader ::= SEQUENCE
+{
+    skip3                   BIT STRING(SIZE (8)),
+    skip4                   INTEGER(0..7),
+    tpcdcirntitype          TpcDciRntiType,
+    numdlgrant              INTEGER(0..7),
+    numulgrant              INTEGER(0..7),
+    subframenumber          INTEGER(0..15),
+    systemframenumber       INTEGER(0..1023)
+}
+
+TpcDciRntiType ::= ENUMERATED
+{
+    crnti      (0),
+    unknown     (1)
+}
+
+DCIUL ::= SEQUENCE
+{
+    kofdci0                  INTEGER(0..7),
+    ulinedxdai               INTEGER(0..3),
+    cellIndex                CELLINDEX,
+    tpc                      INTEGER(0..3),
+    harqid                   INTEGER(0..7),
+    ndi                      INTEGER(0..1),
+    rntitype                 INTEGER(0..7),
+
+    tbsindex                 INTEGER(0..63),
+    mcsindex                 INTEGER(0..31),
+    redundancyversionindex   INTEGER(0..3),
+    skip5                    INTEGER(0..7),
+
+    resourceallocationtype   INTEGER(0..1),
+    srsquest                 SRSQUEST,
+    cqirequest               INTEGER(0..7),
+    modulationtype           ModulationType,
+
+    numberofresourceblocks   INTEGER(0..63),
+    startofresourceblock     INTEGER(0..127),
+    rbgsize                  INTEGER(0..7),
+
+    hoppingflag              HOPPINGFLAG,
+    searchspace              INTEGER(0..3),
+    skip6                    INTEGER(0..1),
+    cyclicshiftdmrs          INTEGER(0..7),
+    skip7                    INTEGER(0..1),
+
+    rivvalue                 INTEGER(0..4095),
+    rivwidth                 INTEGER(0..15),
+
+    numberofresourceblocks2  INTEGER(0..127),
+    startofresourceblock2    INTEGER(0..127),
+    skip8                    BIT STRING(SIZE (2)),
+
+    skip9                    BIT STRING(SIZE (3)),
+    aggregationlevel         INTEGER(0..3),
+    skip10                   BIT STRING(SIZE (3)),
+
+    skip11                   OCTET STRING (SIZE (3))
+}
+
+CELLINDEX ::= ENUMERATED
+{
+    pcc        (0),
+    scc1       (1),
+    scc2       (2)
+}
+SRSQUEST ::= ENUMERATED
+{
+    no          (0),
+    unknown     (1)
+}
+ModulationType ::= ENUMERATED
+{
+    unknown0    (0),
+    qpsk        (1),
+    i16qam       (2),
+    i64qam       (3),
+    i256qam       (4),
+    unknown5    (5),
+    unknown6    (6),
+    unknown7    (7)
+}
+HOPPINGFLAG ::= ENUMERATED
+{
+    disabled    (0),
+    unknown     (1)
+}
+
+DCIDL ::= SEQUENCE
+{
+    rntitype            RntiType,
+    dlggregationlevel   INTEGER(0..1),
+    dlsearchspace       INTEGER(0..1),
+    dldai               INTEGER(0..1),
+    skip12              BIT STRING(SIZE (1)),
+    dlgranttpccmd       INTEGER(0..3),
+    numacknackbits      INTEGER(0..3),
+    dlgrantformattype   DlGrantFormatType,
+    skip13              BIT STRING(SIZE (2)),
+    dlgrantcellindex    DlGrantCellIndex,
+    
+    dlgrantncce         INTEGER(0..255),
+    skip14              OCTET STRING (SIZE (5))
+}
+RntiType ::= ENUMERATED
+{
+    crnti      (0),
+    unknown     (1)
+}
+DlGrantFormatType ::= ENUMERATED
+{
+    type1a     (0),
+    type2      (1),
+    unknown    (2),
+    unknown1    (3)
+}
+DlGrantCellIndex ::= ENUMERATED
+{
+    pcc        (0),
+    scc1        (1),
+    scc2        (2),
+    unkown3      (3),
+    unkown4      (4),
+    unkown5      (5),
+    unkown6      (6),
+    unkown7      (7)
+}
+END

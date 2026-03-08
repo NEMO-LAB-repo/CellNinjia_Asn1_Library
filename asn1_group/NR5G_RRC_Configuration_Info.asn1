@@ -1,0 +1,187 @@
+NR5G-RRC-Configuration-Info DEFINITIONS ::=BEGIN
+
+-- S_H --
+NR5G-RRC-Configuration-Info-S-H ::=SEQUENCE
+{
+    version                         INTEGER(0..4294967295),
+    
+    skip0                           BIT STRING(SIZE(5)),
+    state                           State,
+
+    skip1                           BIT STRING(SIZE(7)),
+    config-status                   Config-Status,
+
+    skip2                           BIT STRING(SIZE(6)),
+    connectivity-mode               Connectivity-Mode,
+
+    num-active-srb                  INTEGER(0..255),
+    num-active-drb                  INTEGER(0..255),
+    mn-mcg-drb-ids                  INTEGER(0..255),
+
+    skip3                           OCTET STRING(SIZE(48)),
+
+    num-contiguous-cc-groups        INTEGER(0..255),
+    num-active-cc                   INTEGER(0..255),
+    num-active-rb                   INTEGER(0..255)
+}
+
+State ::=ENUMERATED
+{
+    unknown0                        (0),
+    unknown1                        (1),
+    unknown2                        (2),
+    unknown3                        (3),
+    unknown4                        (4),
+    unknown5                        (5),
+    unknown6                        (6),
+    connected                        (7)
+}
+Config-Status ::=ENUMERATED
+{
+    false                           (0),
+    true                            (1)
+}
+Connectivity-Mode ::=ENUMERATED
+{
+    unknown0                        (0),
+    unknown1                        (1),
+    sa                              (2)
+}
+
+--Contiguous_CC_info--
+NR5G-RRC-Configuration-Info-Contiguous-CC-Info ::=SEQUENCE
+{
+    band-number                     INTEGER(0..65535),
+    
+    skip4                           BIT STRING(SIZE(7)),
+    dl-bw-class                     Dl-Bw-Class,
+
+    skip5                           BIT STRING(SIZE(7)),
+    ul-bw-class                     Dl-Bw-Class
+}
+
+Dl-Bw-Class ::=ENUMERATED
+{
+    unknown0                        (0),
+    nr5g-rrc-bwc-a                  (1)
+}
+
+--NR5G Serving Cell Info--
+NR5G-RRC-Configuration-Info-Serving-Cell-Info ::=SEQUENCE
+{
+    ccid                            INTEGER(0..255),
+    cell-id                         INTEGER(0..65535),
+    dl-arfcn                        INTEGER(0..4294967295),
+    ul-arfcn                        INTEGER(0..4294967295),
+    band                            INTEGER(0..65535),
+
+    skip6                           BIT STRING(SIZE(7)),
+    band-type                       Band-Type,
+
+    skip7                           BIT STRING(SIZE(4)),
+    dl-carrier-bandwidiwth          Dl-Carrier-Bandwidth,
+
+    skip8                           BIT STRING(SIZE(4)),
+    ul-carrier-bandwidiwth          Dl-Carrier-Bandwidth,
+
+    dl-max-mimo                     INTEGER(0..255),
+    ul-max-mimo                     INTEGER(0..255)
+}
+
+Band-Type ::=ENUMERATED
+{
+    unknown0                        (0),
+    sub6                            (1)
+}
+Dl-Carrier-Bandwidth ::=ENUMERATED
+{
+    unknown0                        (0),
+    unknown1                        (1),
+    unknown2                        (2),
+    unknown3                        (3),
+    unknown4                        (4),
+    unknown5                        (5),
+    unknown6                        (6),
+    unknown7                        (7),
+    unknown8                        (8),
+    unknown9                        (9),
+    unknown10                        (10),
+    unknown11                        (11),
+    bw-100mhz                        (12)
+}
+
+-- Radio Bearer Info --
+NR5G-RRC-Configuration-Info-Radio-Bearer-Info ::=SEQUENCE
+{
+    rb-id                           INTEGER(0..255),
+
+    skip9                           BIT STRING(SIZE(6)),
+    termination-point               Termination-Point,
+
+    skip10                          BIT STRING(SIZE(6)),
+    dl-rb-type                      Dl-Rb-Type,
+
+    skip11                          BIT STRING(SIZE(6)),
+    dl-rb-path                      Dl-Rb-Path,
+
+    skip12                          BIT STRING(SIZE(7)),
+    dl-rohc-enabled                 Dl-Rohc-Enabled,
+
+    skip13                          BIT STRING(SIZE(7)),
+    dl-cipher-algo                  Dl-Cipher-Algo,
+
+    skip14                          BIT STRING(SIZE(7)),
+    dl-integrity-algo               Dl-Integrity-Algo,
+
+    skip15                          BIT STRING(SIZE(6)),
+    ul-rb-type                      Dl-Rb-Type,
+
+    skip16                          BIT STRING(SIZE(6)),
+    ul-rb-path                      Dl-Rb-Path,
+
+    skip17                          BIT STRING(SIZE(7)),
+    ul-rohc-enabled                 Dl-Rohc-Enabled,
+
+    skip18                          BIT STRING(SIZE(7)),
+    ul-cipher-algo                  Dl-Cipher-Algo,
+
+    skip19                          BIT STRING(SIZE(7)),
+    ul-integrity-algo               Dl-Integrity-Algo,
+
+    skip20                          OCTET STRING(SIZE(6))
+}
+
+Termination-Point ::=ENUMERATED
+{
+    unknown0                        (0),
+    unknown1                        (1),
+    nr                              (2)
+}
+Dl-Rb-Type ::=ENUMERATED
+{
+    unknown0                        (0),
+    srb                             (1),
+    drb                             (2)
+}
+Dl-Rb-Path ::=ENUMERATED
+{
+    unknown0                        (0),
+    unknown1                        (1),
+    nr                              (2)
+}
+Dl-Rohc-Enabled ::=ENUMERATED
+{
+    false                           (0),
+    true                            (1)
+}
+Dl-Cipher-Algo ::=ENUMERATED
+{
+    none                           (0),
+    unknown1                       (1)
+}
+Dl-Integrity-Algo ::=ENUMERATED
+{
+    none                           (0),
+    unknown1                       (1)
+}
+END

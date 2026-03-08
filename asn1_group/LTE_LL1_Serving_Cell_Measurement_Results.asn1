@@ -1,0 +1,57 @@
+LTE-LL1-Serving-Cell-Measurement-Results  DEFINITIONS ::= BEGIN
+
+LTE-LL1-Serving-Cell-Measurement-Results-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+
+    is-Idle-Mode                 Is-Idle-Mode,
+    system-fn                    BIT STRING(SIZE(10)),
+    subframe-num                 BIT STRING(SIZE(4)),
+
+    skip0                        BIT STRING(SIZE(2)),
+    carrier-Type                 Carrier-Type,
+    measurement-BW               Measurement-BW,
+
+    cell-ID                      INTEGER(0..65535),
+
+    digital-Rotator-Data         INTEGER(0..255),
+
+    timing-Offset-Rx             Timing-Offset-Rx,
+
+    skip2                        OCTET STRING (SIZE (39))
+}
+
+Is-Idle-Mode ::=ENUMERATED
+{
+    connected-Mode              (0),
+    unknown1                    (1),
+    unknown2                    (2)
+}
+
+Carrier-Type ::=ENUMERATED
+{
+    pcc                         (0),
+    scc                         (1),
+    scc2                        (2)         
+}
+
+Measurement-BW ::=ENUMERATED
+{
+    unknown0                    (0),
+    unknown1                    (1),
+    unknown2                    (2),
+    unknown3                    (3),
+    unknown4                    (4),
+    unknown5                    (5),
+    bw-10-MHz                   (6),
+    unknown7                    (7),
+    bw-15-MHz                   (8)
+}
+
+Timing-Offset-Rx ::=SEQUENCE
+{
+    timing-Offset-Rx-0          INTEGER(0..255),
+    timing-Offset-Rx-1          INTEGER(0..255)
+}
+
+END

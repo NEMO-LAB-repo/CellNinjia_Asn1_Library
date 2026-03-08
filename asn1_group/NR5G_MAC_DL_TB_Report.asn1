@@ -1,0 +1,43 @@
+NR5G-MAC-DL-TB-Report DEFINITIONS ::=BEGIN
+
+NR5G-MAC-DL-TB-Report-S-H ::=SEQUENCE
+{
+    minor                   INTEGER(0..65535),
+    major                   INTEGER(0..65535),
+    skip0                  OCTET STRING(SIZE(11)),
+    num-records            INTEGER(0..255)
+}
+
+-- NR5G-MAC-DL-TB-Report-Record ::=SEQUENCE -- 
+NR5G-MAC-DL-TB-Report-Record ::=SEQUENCE
+{
+    slot                    INTEGER(0..255),
+    skip1                 BIT STRING(SIZE(6)),
+    numerology            Numerology,
+    skip2                 BIT STRING(SIZE(6)),
+    frame                  INTEGER(0..1023),
+    num-ca                INTEGER(0..255),
+    skip3                 OCTET STRING(SIZE(3))
+}
+Numerology ::=ENUMERATED
+{
+    unknown0                    (0),        
+    n-30khz                       (1),
+    unknown2                    (2)
+}
+
+-- NR5G-MAC-DL-TB-Report-dl-mce -- 
+NR5G-MAC-DL-TB-Report-DL-MCE ::=SEQUENCE
+{
+    skip4                 OCTET STRING(SIZE(2)),
+    mce-bitmask            INTEGER(0..65535),
+    ta-cmd                TA-Cmd,
+    skip0                 OCTET STRING(SIZE(2))
+}
+TA-Cmd ::=SEQUENCE
+{
+    tag-id                 INTEGER(0..255),
+    ta-command            INTEGER(0..255)
+}
+
+END

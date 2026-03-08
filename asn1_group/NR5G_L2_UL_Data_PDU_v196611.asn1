@@ -1,0 +1,142 @@
+NR5G-L2-UL-Data-PDU-v196611 DEFINITIONS ::= BEGIN
+
+-- S-H --
+NR5G-L2-UL-Data-PDU-v196611-S-H ::= SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    num-lcid-configured          INTEGER(0..15),
+    num-tti                    INTEGER(0..15),
+    skip                        OCTET STRING(SIZE(3))
+}
+
+-- LC --
+NR5G-L2-UL-Data-PDU-v196611-LC ::= SEQUENCE
+{
+    skip0                      BIT STRING(SIZE(5)),
+    lcid                        INTEGER(0..7),
+
+    skip1                       BIT STRING(SIZE(1)),
+    rlc-sn-length               RLC-SN-Length,
+    skip2                       BIT STRING(SIZE(6)),
+
+    tx-next-ack                 INTEGER(0..262143),
+    tx-next                     INTEGER(0..262143),
+    skip3                      BIT STRING(SIZE(4)),
+    skip4                     OCTET STRING(SIZE(25))
+}
+RLC-SN-Length ::= ENUMERATED
+{
+    len-12 (0),
+    len-18 (1)
+}
+
+-- TTI --
+-- TTI Info Header -- 
+NR5G-L2-UL-Data-PDU-v196611-TTI-H ::= SEQUENCE
+{
+    slot-number              INTEGER(0..255),
+    skip1                   BIT STRING(SIZE(14)),
+    fn                     INTEGER(0..1023),
+
+    skip2                   OCTET STRING(SIZE(1)),
+
+    num-tb               INTEGER(0..7),
+    num-tb-entrys        INTEGER(0..15),
+
+    skip3                   BIT STRING(SIZE(17))
+}
+
+-- TB Header -- 
+NR5G-L2-UL-Data-PDU-v196611-TB-H ::= SEQUENCE
+{
+    skip0                   BIT STRING(SIZE(3)),
+    bsr-type                BSR-Type,
+    mce-built               INTEGER(0..1),
+
+    skip1                   BIT STRING(SIZE(13)),
+    num-lc-built            INTEGER(0..3),
+    skip2                   BIT STRING(SIZE(7)),
+    num-lc-packet-info-entries INTEGER(0..7)
+}
+BSR-Type ::= ENUMERATED
+{
+    no-bsr                    (0),        
+    short-bsr                 (1),
+    long-bsr                  (2),
+    unknown3                  (3),
+    unknown4                  (4),
+    cancelled-bsr             (5)
+}
+
+-- LC Packet Info -- 
+NR5G-L2-UL-Data-PDU-v196611-LC-Packet-Info ::= SEQUENCE
+{
+    skip0                   BIT STRING(SIZE(4)),
+    lcid                    INTEGER(0..7),
+    skip1                   BIT STRING(SIZE(1)),
+
+    pdcp-sn-length          INTEGER(0..3),
+    skip2                   BIT STRING(SIZE(6)),
+
+    rlc-start-sn            INTEGER(0..262143),
+    last-poll-sn            INTEGER(0..262143),
+    skip3                   BIT STRING(SIZE(1)),
+    num-last-pkt-pdcp-hdr-bytes INTEGER(0..3),
+    num-first-pkt-pdcp-hdr-bytes INTEGER(0..3),
+    skip4                   BIT STRING(SIZE(3)),
+    pdu-info-count          INTEGER(0..15),
+
+    pdcp-start-count       INTEGER(0..65535),
+
+    skip5                  OCTET STRING(SIZE(2)),
+
+    num-rlc-status-pdus      INTEGER(0..15),
+    num-rlc-control-pdus     INTEGER(0..15),
+
+    skip6                  BIT STRING(SIZE(5)),
+    rlc-sn-length          RLC-SN-Length,
+    first-pkt-pdcp-header-offset INTEGER(0..3),
+
+    skip7                  OCTET STRING(SIZE(10)),
+
+    first-packet-pdcp-header FIRST-PACKET-PDCP-HEADER,
+    first-packet-rlc-header FIRST-PACKET-RLC-HEADER,
+    last-packet-pdcp-header LAST-PACKET-PDCP-HEADER,
+    last-packet-rlc-header LAST-PACKET-RLC-HEADER,
+
+    remaining-bytes-last-pkt  INTEGER(0..4095),
+    skip8                   BIT STRING(SIZE(20))
+}
+FIRST-PACKET-PDCP-HEADER ::= SEQUENCE
+{
+    skip0 BIT STRING(SIZE(6)),
+    sn-18bits INTEGER(0..262143)
+}
+FIRST-PACKET-RLC-HEADER ::= SEQUENCE
+{
+    skip0 BIT STRING(SIZE(6)),
+    sn-18bits INTEGER(0..262143),
+    un-decoded OCTET STRING(SIZE(2))
+}
+LAST-PACKET-PDCP-HEADER ::= SEQUENCE
+{
+    skip0 BIT STRING(SIZE(6)),
+    sn-18bits INTEGER(0..262143)
+}
+LAST-PACKET-RLC-HEADER ::= SEQUENCE
+{
+    skip0 BIT STRING(SIZE(6)),
+    sn-18bits INTEGER(0..262143),
+    un-decoded OCTET STRING(SIZE(2))
+}
+
+-- PDU Info -- 
+NR5G-L2-UL-Data-PDU-v196611-PDU-Info ::= SEQUENCE
+{
+    num-packets           INTEGER(0..255),
+    offset                INTEGER(0..255),
+    length             INTEGER(0..255),
+    skip0                OCTET STRING(SIZE(1))
+}
+
+END

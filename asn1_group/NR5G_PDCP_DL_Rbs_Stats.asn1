@@ -1,0 +1,40 @@
+NR5G-PDCP-DL-Rbs-Stats DEFINITIONS ::=BEGIN
+
+NR5G-PDCP-DL-Rbs-Stats-S-H ::=SEQUENCE
+{
+    version                                 INTEGER(0..4294967295),
+    num-rb                                  INTEGER(0..4294967295),
+    skip0                                   OCTET STRING(SIZE(10))
+}
+
+NR5G-PDCP-DL-Rbs-Stats-RB ::=SEQUENCE
+{
+    rb-config-index                         INTEGER(0..255),
+    rb-mode                                 INTEGER(0..255),
+    num-reestablish                         INTEGER(0..255),
+    skip1                                   OCTET STRING(SIZE(3)),
+
+    t-reordering                            INTEGER(0..65535),
+    pdcp-hdr-length                         INTEGER(0..65535),
+    num-flow-ctrl-trigger                   INTEGER(0..65535),
+    skip2                                   OCTET STRING(SIZE(4)),
+    num-data-pdu-received                   INTEGER(0..4294967295),
+    data-pdu-bytes-received                 INTEGER(0..4294967295),
+    skip3                                   OCTET STRING(SIZE(20)),
+
+    num-miss-pdu-to-upper-layer             INTEGER(0..65535),
+    skip4                                   OCTET STRING(SIZE(26)),
+
+    num-reorder-timer-expire                INTEGER(0..4294967295),
+    num-reorder-timer-start                 INTEGER(0..4294967295),
+    skip5                                   OCTET STRING(SIZE(8)),
+
+    rx-reorder                              INTEGER(0..4294967295),
+    rx-next                                 INTEGER(0..4294967295),
+    rx-deliv                                INTEGER(0..4294967295),
+
+    skip6                                   OCTET STRING(SIZE(16))
+}
+
+
+END

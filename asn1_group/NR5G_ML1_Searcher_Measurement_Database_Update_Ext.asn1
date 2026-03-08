@@ -1,0 +1,73 @@
+NR5G-ML1-Searcher-Measurement-Database-Update-Ext DEFINITIONS ::= BEGIN
+
+--S-H--
+NR5G-ML1-Searcher-Measurement-Database-Update-Ext-S-H ::= SEQUENCE
+{
+    version                 INTEGER (0..4294967295),
+    
+    skip0                   BIT STRING (SIZE(3)),
+    system-time             System-Time,
+
+    num-layers             INTEGER (0..255),
+    skip2                   OCTET STRING (SIZE(3)),
+    frequency-offset-raw    INTEGER (0..4294967295),
+    timing-offset          INTEGER (0..4294967295)
+}
+
+System-Time ::= SEQUENCE
+{
+    system-frame-number      INTEGER (0..1023),
+    sub-frame-number          INTEGER (0..15),
+    slot-number             INTEGER (0..31),
+    skip1                   BIT STRING (SIZE(10))
+}
+
+--Compoint Carrier List--
+NR5G-ML1-Searcher-Measurement-Database-Update-Ext-CompCarrierList ::= SEQUENCE
+{
+    raster-freq             INTEGER (0..4294967295),
+    cc-id                 INTEGER (0..255),
+    num-cells             INTEGER (0..255),
+    serving-cell-pci         INTEGER (0..65535),
+    serving-cell-index       INTEGER (0..255),
+    serving-srb            INTEGER (0..255),
+    skip0                   OCTET STRING (SIZE(10)),
+    serving-rx-beam       Serving-Rx-Beam,
+    serving-rfic-id         INTEGER (0..65535),
+    skip1                  OCTET STRING (SIZE(2)),
+    servingsubarray-id     ServingSubarrayId
+}
+
+Serving-Rx-Beam ::= SEQUENCE
+{
+    serving-rx-beam-0       INTEGER (0..65535),
+    serving-rx-beam-1       INTEGER (0..65535)
+}
+
+ServingSubarrayId ::= SEQUENCE
+{
+    subarray-id-0         INTEGER (0..65535),
+    subarray-id-1         INTEGER (0..65535)
+}
+
+--Cell--
+NR5G-ML1-Searcher-Measurement-Database-Update-Ext-Cell ::= SEQUENCE
+{
+    pci                    INTEGER (0..65535),
+    pbch-sfn             INTEGER (0..65535),
+    num-beams            INTEGER (0..255),
+    skip0                   OCTET STRING (SIZE(3))
+}
+
+--Detected Beam--
+NR5G-ML1-Searcher-Measurement-Database-Update-Ext-DetectedBeam ::= SEQUENCE
+{
+    ssb-index             INTEGER (0..255),
+    skip0                   OCTET STRING (SIZE(11)),
+
+    ssb-ref-timing-1       INTEGER (0..4294967295),
+    ssb-ref-timing-2       INTEGER (0..4294967295)
+}
+
+
+END

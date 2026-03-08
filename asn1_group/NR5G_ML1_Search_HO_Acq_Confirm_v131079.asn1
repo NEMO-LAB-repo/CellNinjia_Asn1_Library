@@ -1,0 +1,43 @@
+NR5G-ML1-Search-HO-Acq-Confirm-v131079 DEFINITIONS ::= BEGIN
+
+-- S-H --
+NR5G-ML1-Search-HO-Acq-Confirm-S-H-v131079 ::= SEQUENCE
+{
+    version              INTEGER(0..4294967295), 
+    slot-number          INTEGER(0..255),
+
+    scs                  SCS,
+    system-frame-number  INTEGER(0..1023),
+    subframe-number      INTEGER(0..15),
+    skip0                BIT STRING(SIZE(7))
+}
+SCS ::= ENUMERATED
+{
+    scs-15khz                    (0),        
+    scs-30khz                    (1),
+    scs-60khz                    (2),
+    scs-120khz                   (3),
+    scs-240khz                   (4),
+    scs-480khz                   (5),
+    scs-960khz                   (6)
+}
+
+--HO ACQ Pas Result--
+NR5G-ML1-Search-HO-Acq-Confirm-HO-ACQ-Pas-Result-v131079 ::= SEQUENCE
+{
+    skip0                     OCTET STRING(SIZE(8)),
+    arfcn                  INTEGER(0..4294967295),
+    cell-id               INTEGER(0..65535),
+    num-ssb-detected    INTEGER(0..255),
+    best-tx-beam-id     INTEGER(0..255),
+    sss-rsrp          INTEGER(-4294967295..0),
+    sss-rsrq          INTEGER(-4294967295..0),
+    sss-sinr         INTEGER(0..4294967295),
+    rx-beam-pair-0    INTEGER(0..65535),
+    rx-beam-pair-1    INTEGER(0..65535),
+    arfcn-center-frequency INTEGER(0..4294967295),
+    frequency-offset       INTEGER(0..4294967295)
+}
+
+
+END

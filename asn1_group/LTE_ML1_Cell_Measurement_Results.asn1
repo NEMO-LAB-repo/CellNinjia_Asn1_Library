@@ -1,0 +1,52 @@
+LTE-ML1-Cell-Measurement-Results DEFINITIONS ::=BEGIN
+
+LTE-ML1-Cell-Measurement-Results-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+    num-scells                   INTEGER (0..255),
+    is-1rx-mode                  INTEGER (0..255),
+    skip0                        OCTET STRING(SIZE(1))
+}
+
+--cell measurement
+LTE-ML1-Cell-Measurement-Results-cell-measurement ::=SEQUENCE
+{
+    e-arfcn                      INTEGER (0..4294967295),
+
+    skip1                        BIT STRING(SIZE(5)),
+    valid-rx-data                Valid-rx-data,      
+    physicall-cell-id            INTEGER(0..511),
+
+    skip3                        OCTET STRING(SIZE(6)),
+
+    skip4                        BIT STRING(SIZE(20)),
+    inst-rsrp-rx-0-data          INTEGER(0..4095),
+
+    skip5                        BIT STRING(SIZE(20)),
+    inst-rsrp-rx-1-data          INTEGER(0..4095),
+
+    skip6                        OCTET STRING(SIZE(4)),
+
+    skip7                        BIT STRING(SIZE(22)),
+    inst-rsrq-rx-0-data          INTEGER(0..1023),
+
+    skip8                        BIT STRING(SIZE(22)),
+    inst-rsrq-rx-1-data          INTEGER(0..1023),
+
+    skip9                        BIT STRING(SIZE(10)),
+    inst-rssi-rx-1-data          INTEGER(0..2047),
+    inst-rssi-rx-0-data          INTEGER(0..2047),
+
+    skip10                        OCTET STRING(SIZE(4))
+}
+
+Valid-rx-data ::=ENUMERATED
+{
+    na                           (0),
+    rx0                          (1),
+    rx1                          (2),
+    rx0-rx1                      (3)
+}
+
+
+END

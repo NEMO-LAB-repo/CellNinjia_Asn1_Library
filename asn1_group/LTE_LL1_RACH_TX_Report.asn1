@@ -1,0 +1,35 @@
+LTE-LL1-RACH-Tx-Report DEFINITIONS ::= BEGIN
+
+LTE-LL1-RACH-Tx-Report-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+
+    skip0                        OCTET STRING (SIZE (1)),
+
+    versions-current-sfn-sf      INTEGER (0..65535),
+
+    preamble-sequence            INTEGER (0..63),
+    pRACH-Transmit-Power         INTEGER (-255..0),
+    ul-Carrier-Index             Carrier-Type,
+
+    cycle-Shift                  INTEGER (0..65535),
+
+    skip1                        OCTET STRING (SIZE (1)),
+    logical-Root-q               INTEGER (0..1023),
+    preamble-Format              INTEGER (0..3),
+    dL-Carrier-Index             Carrier-Type,
+    start-rb                     INTEGER (0..7),
+    skip2                        BIT STRING(SIZE(5)),
+    first-rb-for-prach-opportunity              INTEGER (0..3),
+
+    tx-resampler-data            INTEGER (0..4294967295)
+}
+
+Carrier-Type ::=ENUMERATED
+{
+    pcc                         (0),
+    scc                         (1),
+    scc2                        (2)         
+}
+
+END

@@ -1,0 +1,135 @@
+LTE-ML1-PDSCH-Stat-Indication DEFINITIONS ::= BEGIN
+
+LTE-ML1-PDSCH-Stat-Indication-S-H ::= SEQUENCE
+{
+    version                      INTEGER (0..255),
+    number-of-records            INTEGER (0..255),
+    skip0                        OCTET STRING(SIZE (2))
+}
+
+LTE-ML1-PDSCH-Stat-Indication-R-H ::= SEQUENCE
+{
+    frame-number                 INTEGER (0..4095),
+    subframe-number              INTEGER (0..15),
+
+    number-of-resource-blocks    INTEGER (0..255),
+    number-of-layers             INTEGER (0..255),
+    number-of-transport-blocks   INTEGER (0..255),
+
+    skip1                        BIT STRING(SIZE (6)),
+    serving-cell-index           Serving-Cell-Index,
+    skip2                        OCTET STRING(SIZE (1)),
+
+    skip3                        BIT STRING(SIZE (7)),
+    alt-tbs-enabled              Alt-Tbs-Enabled,
+
+    skip4                        OCTET STRING(SIZE (4))
+}
+
+Serving-Cell-Index ::= ENUMERATED
+{
+    pcc                         (0),
+    scc1                        (1),
+    scc2                        (2)         
+}
+
+Alt-Tbs-Enabled ::= ENUMERATED
+{
+    false                       (0),
+    unknown-true                (1)
+}
+
+LTE-ML1-PDSCH-Stat-Indication-TB ::= SEQUENCE
+{
+    crc-pass                    CRC-Pass,
+    new-data-indicator          INTEGER (0..1),
+    redundancy-version          INTEGER (0..3),
+    harq-id                     INTEGER (0..15),
+
+    discarded-retx              Discarded-Retx,
+    discarded-retx-present      Discarded-Retx-Present,
+    transport-block-index       INTEGER(0..1),
+    rnti-type                   Rnti-Type,
+
+    skip5                       BIT STRING(SIZE (5)),
+    did-recombining             Did-Recombining,
+    skip6                       BIT STRING(SIZE (10)),
+
+    transport-block-size        INTEGER(0..65535),
+    mcs-index                   INTEGER(0..255),
+    number-of-rbs               INTEGER(0..255),
+
+    skip7                       BIT STRING(SIZE (4)),
+    modulation-type             Modulation-Type,
+    skip8                       BIT STRING(SIZE (6)),
+
+    qed-iterations              INTEGER(0..3),
+    qed2-interim-status         INTEGER(0..1),
+
+    skip9                       OCTET STRING(SIZE (2))
+}
+CRC-Pass ::= ENUMERATED
+{
+    fail                        (0),
+    pass                        (1)
+}
+
+Discarded-Retx ::= ENUMERATED
+{
+    no-discard                  (0),
+    discard-and-ack             (1),
+    discard-and-nak             (2)
+}
+Discarded-Retx-Present ::= ENUMERATED
+{
+    none                        (0),
+    present                     (1)
+}
+Rnti-Type ::= ENUMERATED
+{
+    c                           (0),
+    unknown1                    (1),
+    p                           (2),
+    ra                          (3),
+    temp-c                      (4),
+    si                          (5),
+    unknown6                    (6),
+    unknown7                    (7),
+    unknown8                    (8)
+}
+Did-Recombining ::= ENUMERATED
+{
+    no                          (0),
+    yes                         (1)
+}
+Modulation-Type ::= ENUMERATED
+{
+    unknown0    (0),
+    qpsk        (1),
+    i16qam       (2),
+    i64qam       (3),
+    i256qam       (4)
+}
+
+LTE-ML1-PDSCH-Stat-Indication-R-T ::= SEQUENCE
+{
+    pmch-id                     INTEGER(0..255),
+    area-id                     INTEGER(0..255),
+    skip10                      BIT STRING(SIZE (6)),
+    alt-tbs-index               Alt-Tbs-Index,
+    skip11                      BIT STRING(SIZE (7)),
+    alt-mcs-enabled             Alt-Mcs-Enabled
+}
+Alt-Tbs-Index ::= ENUMERATED
+{
+    none                        (0),
+    unknown1                    (1),
+    unknown2                    (2),
+    unknown3                    (3)
+}
+Alt-Mcs-Enabled ::= ENUMERATED
+{
+    false                       (0),
+    unknown-true                (1)
+}
+END

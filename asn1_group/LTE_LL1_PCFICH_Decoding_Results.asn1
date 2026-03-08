@@ -1,0 +1,48 @@
+LTE-LL1-PCFICH-Decoding-Results DEFINITIONS ::=BEGIN
+
+LTE-LL1-PCFICH-Decoding-Results-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+
+    skip0                        BIT STRING(SIZE(2)),
+    carrier-Index                Carrier-Index,
+    cfi                          BIT STRING(SIZE(2)),
+    sub-frame-number             BIT STRING(SIZE(4)),
+    number-of-records            BIT STRING(SIZE(5)),
+    versions-serving-cell-id     BIT STRING(SIZE(9)),
+
+    skip1                        BIT STRING(SIZE(6)),
+    system-frame-number          BIT STRING(SIZE(10)),
+
+    cm-sz-0                      INTEGER(0..255),
+    cm-sz-1                      INTEGER(0..255),
+    ue-sz-0                      INTEGER(0..255),
+    ue-sz-1                      INTEGER(0..255),
+
+    skip2                        OCTET STRING (SIZE (6))
+}
+
+Carrier-Index ::=ENUMERATED
+{
+    pcc                         (0),
+    scc                         (1),
+    scc2                        (2)         
+}
+
+LTE-LL1-PCFICH-Decoding-Results-Record ::=SEQUENCE
+{
+    sub-frame-offset            INTEGER(0..65535),--at least lowest 10 bit
+
+    pdcch-demap-status          INTEGER(0..255),--at least lowest 1 bit
+
+    skip3                       BIT STRING(SIZE(4)),
+    pcfich-cfi                  BIT STRING(SIZE(2)),
+    skip4                       BIT STRING(SIZE(2)),
+
+    phich-tdd-mi                BIT STRING(SIZE(3)),--not sure
+    decode-abort                BIT STRING(SIZE(3)),--not sure
+    is-macro-sleep-sf           BIT STRING(SIZE(2)),--not sure
+    rnti-bitmask                BIT STRING(SIZE(10)),--at least lowest 6 bit
+    skip5                       BIT STRING(SIZE(14))
+}
+END

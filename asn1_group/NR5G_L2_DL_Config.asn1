@@ -1,0 +1,243 @@
+NR5G-L2-DL-Config DEFINITIONS ::=BEGIN
+NR5G-L2-DL-Config-S-H ::=SEQUENCE
+{
+    version                    INTEGER(0..4294967295),
+    skip0                      OCTET STRING(SIZE(1)),
+    conig-mask                 INTEGER(0..255),
+    skip1                      BIT STRING(SIZE(4)),
+    num-rb-logged              INTEGER(0..15),
+    skip2                      OCTET STRING(SIZE(1)),
+
+    mcg                        NR5G-L2-DL-Config-MCG,
+    scg                        NR5G-L2-DL-Config-SCG,
+
+    pdcp-drb-rel-mask          INTEGER(0..4294967295),
+    rlc-drb-rel-mask           INTEGER(0..4294967295),
+    pdcp-srb-rel-mask          INTEGER(0..255),
+    rlc-srb-rel-mask            INTEGER(0..255),
+    skip3                      OCTET STRING(SIZE(2)),
+
+    pdcp-drb-changed-mask      INTEGER(0..4294967295),
+    rlc-drb-changed-mask       INTEGER(0..4294967295),
+    pdcp-srb-hanged-mask       INTEGER(0..255),
+    rlc-srb-changed-mask       INTEGER(0..255),
+
+    skip4                      OCTET STRING(SIZE(2))
+}
+
+NR5G-L2-DL-Config-MCG ::=SEQUENCE
+{
+    drb-id-bmask               INTEGER(0..255),
+    skip5                      OCTET STRING(SIZE(3)),
+    srb-id-bitmask             INTEGER(0..255),
+
+    skip6                      BIT STRING(SIZE(6)),
+    srb-cipher-algo            Srb-Cipher-Algo,
+    srb-cipher-key-index       INTEGER(0..255),
+    srb-cipher-raw1                       INTEGER(0..4294967295),
+    srb-cipher-raw2                       INTEGER(0..4294967295),
+    srb-cipher-raw3                       INTEGER(0..4294967295),
+    srb-cipher-raw4                       INTEGER(0..4294967295),
+
+    skip7                      BIT STRING(SIZE(6)),
+    srb-integrity-algo         Srb-Integrity-Algo,
+    srb-integrity-key-index    INTEGER(0..255),
+    srb-integrity-raw1                       INTEGER(0..4294967295),
+    srb-integrity-raw2                       INTEGER(0..4294967295),
+    srb-integrity-raw3                       INTEGER(0..4294967295),
+    srb-integrity-raw4                       INTEGER(0..4294967295),
+
+    skip8                      BIT STRING(SIZE(6)),
+    drb-cipher-algo            Drb-Cipher-Algo,
+    drb-cipher-key-index       INTEGER(0..255),
+    drb-cipher-raw1                       INTEGER(0..4294967295),
+    drb-cipher-raw2                       INTEGER(0..4294967295),
+    drb-cipher-raw3                       INTEGER(0..4294967295),
+    drb-cipher-raw4                       INTEGER(0..4294967295),
+
+    skip9                      BIT STRING(SIZE(6)),
+    drb-integrity-algo         Drb-Integrity-Algo,
+    drb-integrity-key-index    INTEGER(0..255),
+    drb-integrity-raw1                       INTEGER(0..4294967295),
+    drb-integrity-raw2                       INTEGER(0..4294967295),
+    drb-integrity-raw3                       INTEGER(0..4294967295),
+    drb-integrity-raw4                       INTEGER(0..4294967295)
+}
+
+NR5G-L2-DL-Config-SCG ::=SEQUENCE
+{
+    drb-id-bmask               INTEGER(0..255),
+    skip5                      OCTET STRING(SIZE(3)),
+    srb-id-bitmask             INTEGER(0..255),
+
+    skip6                      BIT STRING(SIZE(6)),
+    srb-cipher-algo            Srb-Cipher-Algo,
+    srb-cipher-key-index       INTEGER(0..255),
+    srb-cipher-raw1                       INTEGER(0..4294967295),
+    srb-cipher-raw2                       INTEGER(0..4294967295),
+    srb-cipher-raw3                       INTEGER(0..4294967295),
+    srb-cipher-raw4                       INTEGER(0..4294967295),
+
+    skip7                      BIT STRING(SIZE(6)),
+    srb-integrity-algo         Srb-Integrity-Algo,
+    srb-integrity-key-index    INTEGER(0..255),
+    srb-integrity-raw1                       INTEGER(0..4294967295),
+    srb-integrity-raw2                       INTEGER(0..4294967295),
+    srb-integrity-raw3                       INTEGER(0..4294967295),
+    srb-integrity-raw4                       INTEGER(0..4294967295),
+
+    skip8                      BIT STRING(SIZE(6)),
+    drb-cipher-algo            Drb-Cipher-Algo,
+    drb-cipher-key-index       INTEGER(0..255),
+    drb-cipher-raw1                       INTEGER(0..4294967295),
+    drb-cipher-raw2                       INTEGER(0..4294967295),
+    drb-cipher-raw3                       INTEGER(0..4294967295),
+    drb-cipher-raw4                       INTEGER(0..4294967295),
+
+    skip9                      BIT STRING(SIZE(6)),
+    drb-integrity-algo         Drb-Integrity-Algo,
+    drb-integrity-key-index    INTEGER(0..255),
+    drb-integrity-raw1                       INTEGER(0..4294967295),
+    drb-integrity-raw2                       INTEGER(0..4294967295),
+    drb-integrity-raw3                       INTEGER(0..4294967295),
+    drb-integrity-raw4                       INTEGER(0..4294967295)
+}
+
+Srb-Cipher-Algo ::=ENUMERATED
+{
+    algo-none                   (0),
+    unknown1                    (1),
+    aes                         (2)
+}
+Srb-Integrity-Algo ::=ENUMERATED
+{
+    algo-none                   (0),
+    unknown1                    (1),
+    aes                         (2)
+}
+Drb-Cipher-Algo ::=ENUMERATED
+{
+    algo-none                   (0),
+    unknown1                    (1),
+    aes                         (2)
+}
+Drb-Integrity-Algo ::=ENUMERATED
+{
+    algo-none                   (0),
+    unknown1                    (1),
+    aes                         (2)
+}
+
+NR5G-L2-DL-Config-RB-Config ::=SEQUENCE
+{
+    skip10                      BIT STRING(SIZE(7)),
+    rb-mode                     Rb-Mode,
+
+    rb-index                    INTEGER(0..255),
+    epsid                       INTEGER(0..255),
+
+    skip11                      BIT STRING(SIZE(14)),
+    rb-type                     Rb-Type,
+
+    skip12                      BIT STRING(SIZE(7)),
+    config-action               Config-Action,
+
+    skip13                      BIT STRING(SIZE(6)),
+    rlc-path                    RLC-Path,
+
+    skip14                      BIT STRING(SIZE(6)),
+    pdcp-path                   PDCP-Path,
+
+    config-bmask                INTEGER(0..255),
+
+    skip15                      OCTET STRING(SIZE(8)),
+    pdcp-config                 NR5G-L2-DL-Config-RB-Config-PDCP-Config,
+    rlc-rb-info                 NR5G-L2-DL-Config-RB-Config-RLC-RB-Info
+}
+
+Rb-Mode ::=ENUMERATED
+{
+    unknown0                    (0),
+    am                          (1)
+}
+Rb-Type ::=ENUMERATED
+{
+    unknown0                    (0),
+    srb                         (1),
+    drb                         (2)
+}
+Config-Action ::=ENUMERATED
+{
+    unknown0                    (0),
+    act-add                     (1)
+}
+RLC-Path ::=ENUMERATED
+{
+    unknown0                    (0),
+    unknown1                    (1),
+    nr                          (2)
+}
+PDCP-Path ::=ENUMERATED
+{
+    unknown0                    (0),
+    unknown1                    (1),
+    nr                          (2)
+}
+
+--NR5G-L2-DL-Config-RB-Config-PDCP-Config--
+NR5G-L2-DL-Config-RB-Config-PDCP-Config ::=SEQUENCE
+{
+    config-mask                 INTEGER(0..255),
+    skip16                      OCTET STRING(SIZE(2)),
+    sn-size                     INTEGER(0..255),
+
+    skip17                      BIT STRING(SIZE(7)),
+    integrity-protection        Integrity-Protection,
+
+    skip18                      BIT STRING(SIZE(7)),
+    rtatus-report-required      Rtatus-Report-Required,
+
+    skip19                      BIT STRING(SIZE(7)),
+    out-of-order-delivery       Out-Of-Order-Delivery,
+
+    t-reordering                INTEGER(0..65535),
+    skip20                      OCTET STRING(SIZE(7))
+}
+Integrity-Protection ::=ENUMERATED
+{
+    false                       (0),
+    true                        (1)
+}
+Rtatus-Report-Required ::=ENUMERATED
+{
+    false                       (0),
+    true                        (1)
+}
+Out-Of-Order-Delivery ::=ENUMERATED
+{
+    false                       (0),
+    true                        (1)
+}
+
+--NR5G-L2-DL-Config-RB-Config-RLC-RB-Info--
+NR5G-L2-DL-Config-RB-Config-RLC-RB-Info ::=SEQUENCE
+{
+    lcid                        INTEGER(0..255),
+    action                      INTEGER(0..255),
+    config-bitmask              INTEGER(0..255),
+
+    skip20                      BIT STRING(SIZE(7)),
+    reestablish-rlc             Reestablish-Rlc,
+
+    t-status-prohibit           INTEGER(0..65535),
+    t-reassembly                INTEGER(0..65535),
+
+    sn-length                   INTEGER(0..255)
+}
+Reestablish-Rlc ::=ENUMERATED
+{
+    false                       (0),
+    true                        (1)
+}
+
+END

@@ -1,0 +1,164 @@
+LTE-ML1-Idle-Measurement-Request DEFINITIONS ::= BEGIN
+
+
+LTE-ML1-Idle-Measurement-Request-S-H ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    subpacket-size                              INTEGER (0..255),
+    skip0                                       BIT STRING(SIZE(16))
+}
+
+--pkt 1
+LTE-ML1-Idle-Measurement-Request-Sub-Pkt-1 ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    subpacket-size                              INTEGER (0..255),
+    skip1                                       BIT STRING(SIZE(8)),
+    subPacket-Idle-Meas-Common-Config           SubPacket-Idle-Meas-Common-Config
+}
+
+SubPacket-Idle-Meas-Common-Config ::=SEQUENCE
+{
+    versions-Idle-Meas-Removal                  INTEGER (0..65535),
+    idle-Meas-Included                          INTEGER (0..65535)
+}
+
+
+--pkt 2
+LTE-ML1-Idle-Measurement-Request-Sub-Pkt-2 ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    subpacket-size                              INTEGER (0..255),
+    skip2                                       BIT STRING(SIZE(8)),
+    subPacket-Idle-Meas-Resel-Common-Params     SubPacket-Idle-Meas-Resel-Common-Params
+}
+
+SubPacket-Idle-Meas-Resel-Common-Params ::=SEQUENCE
+{
+    skip3                                       BIT STRING(SIZE(13)),
+    versions-Qhyst                              INTEGER (0..7),
+
+    same-Ref-Signals-in-Neighbors               Same-Ref-Signals-in-Neighbors,
+    skip4                                       BIT STRING(SIZE(13)),
+    mobility-State-Params                       INTEGER (0..3)
+}
+
+Same-Ref-Signals-in-Neighbors ::=ENUMERATED
+{
+    false                                       (0),
+    unknown1                                    (1)
+}
+
+--pkt 5
+LTE-ML1-Idle-Measurement-Request-Sub-Pkt-5 ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    subpacket-size                              INTEGER (0..255),
+    skip2                                       BIT STRING(SIZE(8)),
+    subPacket-Idle-Meas-Serving-Frequency-Resel-Info     SubPacket-Idle-Meas-Serving-Frequency-Resel-Info
+}
+
+SubPacket-Idle-Meas-Serving-Frequency-Resel-Info ::=SEQUENCE
+{
+    versions-Standards-Version                 INTEGER (0..65535),      
+    skip3                                      BIT STRING(SIZE(16)),
+
+    serving-Cell-Priority                      INTEGER (0..15),
+    s-Non-Intra-Search                         INTEGER (0..15),
+
+    thresh-Serving-Low                         INTEGER (0..15),
+    skip4                                      BIT STRING(SIZE(20)),  
+
+    rel-9-Info                                 Rel-9-Info
+}
+
+Rel-9-Info ::=SEQUENCE
+{
+    skip5                                      BIT STRING(SIZE(6)),
+    s-Non-Intra-Search-Q                       INTEGER (0..15),
+    skip6                                      BIT STRING(SIZE(2)),
+    thres-Serving-Low-Q                        INTEGER (0..15),
+
+    skip8                                      BIT STRING(SIZE(16))
+}
+
+--pkt 6
+LTE-ML1-Idle-Measurement-Request-Sub-Pkt-6 ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    subpacket-size                              INTEGER (0..255),
+    skip9                                       BIT STRING(SIZE(8)),
+    subPacket-Idle-Meas-Intra-Frequency-Common-Config-Resel-Info     SubPacket-Idle-Meas-Intra-Frequency-Common-Config-Resel-Info
+}
+
+SubPacket-Idle-Meas-Intra-Frequency-Common-Config-Resel-Info ::=SEQUENCE
+{
+    versions-Standards-Version                 INTEGER (0..65535),
+    skip10                                      BIT STRING(SIZE(16)),
+    qrxlevmin-for-Intra-Freq-Neighbors-Data    INTEGER (0..255),
+    p-max-Data                                 INTEGER (0..255),
+
+    treselection-EUTRAN                        INTEGER (0..31),
+    measurement-BW                             INTEGER (0..7),
+
+    cSG-PCI-Range-Present                      INTEGER (0..3),
+    neighbor-Cell-Config                       INTEGER (0..3),
+    treselection-EUTRAN-High                   INTEGER (0..3),
+    treselection-EUTRAN-Medium                 INTEGER (0..3),
+
+    cSG-PCI-Range-Start-PCI                    INTEGER (0..1),
+    cSG-PCI-Range-End-PCI                      INTEGER (0..3),
+    s-Intra-Search-Raw                         INTEGER (0..31),
+
+    skip11                                     OCTET STRING (SIZE (7)),
+    rel-9-Info-subpkt-6                        Rel-9-Info-subpkt-6
+
+}
+
+Rel-9-Info-subpkt-6 ::=SEQUENCE
+{
+    skip12                                     BIT STRING(SIZE(7)),
+    q-Qual-Min-Data                            INTEGER (0..7),
+    s-Intra-Search-Q                           INTEGER (0..63),
+
+    skip13                                     BIT STRING(SIZE(16))  
+}
+
+--pkt 7
+LTE-ML1-Idle-Measurement-Request-Sub-Pkt-7 ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    subpacket-size                              INTEGER (0..255),
+    skip14                                      BIT STRING(SIZE(8)),
+    subPacket-Idle-Meas-Intra-Frequency-Whitelist-Info     SubPacket-Idle-Meas-Intra-Frequency-Whitelist-Info
+}
+
+SubPacket-Idle-Meas-Intra-Frequency-Whitelist-Info ::=SEQUENCE
+{
+    skip15                                      BIT STRING(SIZE(13)),
+    versions-Num-White-Listed-Cells             INTEGER (0..7)        
+}
+
+--pkt 7 cell structure
+LTE-ML1-Idle-Measurement-Request-Sub-Pkt-7-cell ::=SEQUENCE
+{
+    q-Offset                                    INTEGER (0..127),
+    physical-Cell-ID                            INTEGER (0..511)
+}
+
+--pkt 8
+LTE-ML1-Idle-Measurement-Request-Sub-Pkt-8 ::=SEQUENCE
+{
+    version                                     INTEGER (0..255),
+    subpacket-size                              INTEGER (0..255),
+    skip16                                      BIT STRING(SIZE(8)),
+    subPacket-Idle-Meas-Intra-Frequency-Blacklist-Cells     SubPacket-Idle-Meas-Intra-Frequency-Blacklist-Cells
+
+}
+
+SubPacket-Idle-Meas-Intra-Frequency-Blacklist-Cells ::=SEQUENCE
+{
+    versions-Num-Black-Listed-Cells             INTEGER (0..65535),
+    skip17                                      BIT STRING(SIZE(16))
+}
+END

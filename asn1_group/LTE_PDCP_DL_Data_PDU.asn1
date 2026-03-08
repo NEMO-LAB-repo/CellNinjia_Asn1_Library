@@ -1,0 +1,71 @@
+LTE-PDCP-DL-Data-PDU DEFINITIONS ::= BEGIN
+
+LTE-PDCP-DL-Data-PDU-Specific-Header ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+    skip0                        OCTET STRING (SIZE (3)),
+    versions-number-of-meta      INTEGER (0..65535),
+    number-of-rb                 INTEGER (0..65535),
+    logcount                     INTEGER (0..65535)
+}
+
+LTE-PDCP-DL-Data-PDU-Pdcp-State ::=SEQUENCE
+{
+    rb-cfg-index                 INTEGER (0..255),
+    skip1                        OCTET STRING (SIZE (2)),
+    pdcp-sn-length               INTEGER (0..255),
+    rx-deliv                     INTEGER (0..65535),
+    skip2                        OCTET STRING (SIZE (2)),
+    rx-next                      INTEGER (0..65535),
+    skip3                        OCTET STRING (SIZE (2)),
+    next-count                   INTEGER (0..65535),
+    skip4                        OCTET STRING (SIZE (2))
+}
+
+LTE-PDCP-DL-Data-PDU-Meta-Log-Buffer ::=SEQUENCE
+{
+    sub-fn                       INTEGER (0..65535),
+    sfn                          INTEGER (0..65535),
+    rx-timetick-raw              INTEGER (0..4294967295),
+    skip5                        OCTET STRING (SIZE (5)),
+    rb-cfg-index                 INTEGER (0..255),
+    key-index                    INTEGER (0..255),
+
+    skip6                        BIT STRING(SIZE (7)),
+    rlc-path                     Rlcpath,
+
+    skip7                        BIT STRING(SIZE (7)),
+    route-status                 Routestatus,
+
+    ip-packet-header0            INTEGER (0..255),
+    ip-packet-header1            INTEGER (0..255),
+    startcount                   INTEGER (0..65535),
+    skip8                        OCTET STRING (SIZE (2)),
+    endcount                     INTEGER (0..65535),
+    skip9                        OCTET STRING (SIZE (2)),
+    rlc-end-sn                   INTEGER (0..65535),
+    skip10                        OCTET STRING (SIZE (2)),
+    number-ip-pkts               INTEGER (0..255),
+    skip11                        OCTET STRING (SIZE (3)),
+    number-ip-bytes              INTEGER (0..65535),
+    skip12                       OCTET STRING (SIZE (2))
+}
+
+Rlcpath ::=ENUMERATED
+{
+    mcg                          (0),
+    unknown                      (1)
+}
+
+Routestatus ::=ENUMERATED
+{
+    unknown                      (0),
+    deliv-direct                 (1)
+}
+--rlc-path     = 0x00 corresponds to MCG
+--route-status = 0x01 corresponds to DELIV_DIRECT
+--we do not know the exact number of bits these field take place
+--And it's hard for us to define it in ENUMERATED
+--so we use the skip to deal now
+
+END

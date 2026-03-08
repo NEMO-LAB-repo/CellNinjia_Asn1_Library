@@ -1,0 +1,85 @@
+LTE-ML1-Random-Access-Request-MSG1-Report DEFINITIONS ::= BEGIN
+
+LTE-ML1-Random-Access-Request-MSG1-Report-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+    skip0                        OCTET STRING (SIZE (3)),
+
+    skip1                        INTEGER (0..3),
+    cyclicshift                  INTEGER (0..2047),
+    physical-root-index          INTEGER (0..1023),
+    preamble-sequence            INTEGER (0..63),
+    skip2                        INTEGER (0..1),
+    cell-index                   Carrier-Type,
+
+    prach-tx-power               INTEGER (-255..0),
+
+    prach-frequency-offset       INTEGER (0..31),
+    beta-prach                   INTEGER (0..2047),
+
+    skip3                        INTEGER (0..15),
+    preamble-format              INTEGER (0..7),
+    duplex-mode                  Duplex-Mode,
+
+    skip4                        INTEGER (0..8191),
+    density-pre-10-ms            INTEGER (0..7),
+
+    random-Access-Request-Timing      Random-Access-Request-Timing,
+
+    random-Access-Response-Window-Start     Random-Access-Response-Window-Start,
+
+    random-Access-Response-Window-End       Random-Access-Response-Window-End,
+
+    skip8                       INTEGER (0..63),
+    ra-rnti                     INTEGER (0..3),
+
+    skip9                       INTEGER (0..16777215), 
+
+    prach-actual-tx-power       INTEGER (-255..0),              
+
+    skip10                      INTEGER (0..63),
+    pRACH-Config-Index          INTEGER (0..3),  
+
+    skip11                      INTEGER (0..65535),
+
+    pRACH-RX-Freq-Error         INTEGER (0..65535), 
+
+    skip12                      INTEGER (0..65535)   
+}
+
+Carrier-Type ::=ENUMERATED
+{
+    pcc                         (0),
+    scc                         (1),
+    scc2                        (2)         
+}
+
+Duplex-Mode ::=ENUMERATED
+{
+    fDD                         (0),
+    tDD                         (1)
+}
+
+Random-Access-Request-Timing ::=SEQUENCE
+{
+    sub-frame-number             INTEGER (0..15),
+    skip5                        INTEGER (0..3),
+    system-frame-number          INTEGER (0..1023)
+}
+
+Random-Access-Response-Window-Start ::=SEQUENCE
+{
+    sub-frame-number             INTEGER (0..15),
+    skip6                        INTEGER (0..3),
+    system-frame-number          INTEGER (0..1023)
+}
+
+Random-Access-Response-Window-End ::=SEQUENCE
+{
+    sub-frame-number             INTEGER (0..15),
+    skip7                        INTEGER (0..3),
+    system-frame-number          INTEGER (0..1023)
+}
+
+
+END

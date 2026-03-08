@@ -1,0 +1,72 @@
+NR5G-MAC-RACH-Attempt DEFINITIONS ::= BEGIN
+
+-- S-H --
+NR5G-MAC-RACH-Attempt-S-H ::= SEQUENCE
+{
+    version                     INTEGER(0..4294967295),
+    skip                        OCTET STRING(SIZE(3)),
+    num-records                 INTEGER(0..255),
+    num-attempts                INTEGER(0..255),
+    skip1                       OCTET STRING(SIZE(1)),
+    ssb-id                    INTEGER(0..255),
+    skip2                       OCTET STRING(SIZE(5)),
+    rach-msg-bitmask            INTEGER(0..255),
+    skip3                       OCTET STRING(SIZE(35)),
+
+    rach-msg1                RACH-Msg1,
+
+    rar-window-start         RAR-Window-Start,
+    rar-window-end           RAR-Window-End,
+
+    skip7                       OCTET STRING(SIZE(12)),
+
+    rach-msg2            RACH-Msg2,
+    skip8                       OCTET STRING(SIZE(43))
+} 
+
+RACH-Msg1 ::= SEQUENCE
+{
+    subframe                 INTEGER(0..63),
+    frame                  INTEGER(0..1023),
+    slot                   INTEGER(0..255),
+    skip0               OCTET STRING(SIZE(3)),
+    prach-config          INTEGER(0..255),
+    skip1                       OCTET STRING(SIZE(1)),
+    uroot                  INTEGER(0..65535),
+    raid                 INTEGER(0..255),
+    fdm                  INTEGER(0..255),
+    cyclic-shift-v       INTEGER(0..65535),
+    n-cs                 INTEGER(0..65535),
+    ra-rnti              INTEGER(0..65535),
+    regular-pathloss     INTEGER(0..65535),
+    pmin-pathloss        INTEGER(0..65535),
+    skip2               OCTET STRING(SIZE(2))
+}
+RAR-Window-Start ::= SEQUENCE
+{
+    subframe                 INTEGER(0..63),
+    frame                  INTEGER(0..1023),
+    slot                   INTEGER(0..255),
+    skip0                OCTET STRING(SIZE(1))
+}
+RAR-Window-End ::= SEQUENCE
+{
+    subframe                 INTEGER(0..63),
+    frame                  INTEGER(0..1023),
+    slot                   INTEGER(0..255),
+    skip0                OCTET STRING(SIZE(1))
+}
+RACH-Msg2 ::= SEQUENCE
+{
+    subframe                 INTEGER(0..63),
+    frame                  INTEGER(0..1023),
+    slot                   INTEGER(0..255),
+    skip0                OCTET STRING(SIZE(1)),
+    max-backoff-duration   INTEGER(0..65535),
+    t-rnti             INTEGER(0..65535),
+    ta-value            INTEGER(0..255),
+    skip1                OCTET STRING(SIZE(11)),
+    raid-received       INTEGER(0..255)
+}
+
+END

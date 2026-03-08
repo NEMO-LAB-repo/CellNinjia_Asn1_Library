@@ -1,0 +1,72 @@
+LTE-MAC-Ul-Transport-Block DEFINITIONS ::= BEGIN
+
+LTE-MAC-Ul-Transport-Block-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+    num-subpkt                   INTEGER (0..255),
+    skip0                        OCTET STRING(SIZE(2))
+}
+
+LTE-MAC-Ul-Transport-Block-Subpkt-H ::=SEQUENCE
+{
+    subpacket-id                      INTEGER (0..255),
+    subpacket-version                 INTEGER (0..255),
+    subpacket-size                    INTEGER (0..65535),
+    num-samples                       INTEGER (0..255)
+}
+
+LTE-MAC-Ul-Transport-Block-Sample-H ::=SEQUENCE
+{
+    sub-id                            INTEGER (0..255),
+    scell-id                          INTEGER (0..255),
+    harq-id                           INTEGER (0..255),
+
+    skip1                             BIT STRING(SIZE(4)),
+    rnti-type                         Rnti-Type,
+
+    sfn                               INTEGER (0..4095),
+    sub-fn                            INTEGER (0..15),
+
+    grant-bytes                       INTEGER (0..65535),
+
+    rlc-pdus                          INTEGER (0..255),
+    padding-bytes                     INTEGER (0..65525),
+
+    skip2                             BIT STRING(SIZE(6)),
+    bsr-event                         Bsr-Event,
+
+    skip3                             BIT STRING(SIZE(5)),
+    bsr-trig                          Bsr-Trig,
+
+    hdr-len                           INTEGER (0..255)
+}
+Rnti-Type ::=ENUMERATED
+{
+    c-rnti                          (0),
+    sps-rnti                        (1),
+    p-rnti                          (2),
+    ra-rnti                         (3),
+    temporary-c-rnti                (4),
+    si-rnti                         (5),
+    tpc-pusch-rnti                  (6),
+    tpc-pucch-rnti                  (7),
+    mbms-rnti                       (8)
+}
+Bsr-Event ::=ENUMERATED
+{
+    none                            (0),
+    periodic                        (1),
+    high-data-arrival               (2),
+    robustness-bsr                  (3)
+}
+Bsr-Trig ::=ENUMERATED
+{
+    no-bsr                          (0),
+    cacelled                        (1),
+    l-bsr                           (2),
+    s-bsr                           (3),
+    pad-l-bsr                       (4),
+    pad-s-bsr                       (5),
+    pad-t-bsr                       (6)
+}
+END

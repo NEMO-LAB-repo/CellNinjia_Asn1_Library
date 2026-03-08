@@ -1,0 +1,189 @@
+LTE-ML1-GM-TX-Report DEFINITIONS ::=BEGIN
+
+LTE-ML1-GM-TX-Report-S-H ::=SEQUENCE
+{
+    version                     INTEGER(0..255),
+
+    duplex-mode                 Duplex-mode,
+    ul-dl-cfg                   INTEGER(0..15),
+    skip0                       BIT STRING(SIZE(10)),
+
+    number-of-records           INTEGER(0..255)
+}
+Duplex-mode ::=ENUMERATED
+{
+    fdd                         (0),
+    tdd                         (1),
+    unknown2
+}
+
+--R-H    8Byte
+LTE-ML1-GM-TX-Report-R-H ::=SEQUENCE
+{
+    skip1                       OCTET STRING(SIZE(4)),
+
+    csf-present-flag            INTEGER(0..1),
+    ack-nak-reporting-mode      Ack-nak-reporting-mode,
+    skip2                       BIT STRING(SIZE(1)),
+    ul-ack-nak-present-flag     Ul-ack-nak-present-flag,
+    tx-sub-fn                   INTEGER(0..15),
+    tx-sys-fn                   INTEGER(0..1023),
+    skip3                       BIT STRING(SIZE(4)),
+
+    cell-index                  INTEGER(0..3),
+    srs-present-flag            INTEGER(0..1),
+    skip4                       BIT STRING(SIZE(3)),
+    ca-mode-enabled             Ca-mode-enabled,
+    srs-ue-cell-specific        INTEGER(0..1)
+}
+
+Ack-nak-reporting-mode ::=ENUMERATED
+{
+    fddmode                     (0),
+    unknown1                    (1),
+    unknown2                    (2),
+    unknown3                    (3),
+    unknown4                    (4),
+    pucchformat3                (5)
+}
+Ul-ack-nak-present-flag ::=ENUMERATED
+{
+    ack-nak-not-present         (0),
+    ack-nak-present             (1)
+}
+Ca-mode-enabled ::=ENUMERATED
+{
+    disabled                    (0),
+    enabled                     (1)
+}
+
+
+--R-H-Exd 2Byte
+LTE-ML1-GM-TX-Report-R-H-Exd ::=SEQUENCE
+{
+    skip5                       BIT STRING(SIZE(2)),
+    total-tx-power              INTEGER(0..255),--not sure
+    eca-ack-reporting-mode      Eca-ack-reporting-mode,
+    w-ul-dai                    INTEGER(0..1),
+    skip6                       BIT STRING(SIZE(4))
+}
+Eca-ack-reporting-mode ::=ENUMERATED
+{
+    no-eca                      (0),
+    eca                         (1)--guess
+}
+
+--pucch
+LTE-ML1-GM-TX-Report-R-H-PUCCH ::=SEQUENCE
+{
+    skip14                      BIT STRING(SIZE(4)),
+    n-1-pucch                   INTEGER(0..255),
+    beta-pucch                  INTEGER(0..65535),
+    temp-rnti-ack-flag          Scheduling-request-present,
+    scheduling-request-present  Scheduling-request-present,
+    ack-nak-length              INTEGER(0..3),
+
+
+    n-1-pucch-2                 INTEGER(0..1),
+    skip7                       BIT STRING(SIZE(13)),
+    n-1-pucch-1                 INTEGER(0..7),
+    n-1-pucch-0                 INTEGER(0..4095),
+    n-1-pucch-num               INTEGER(0..7),
+
+    skip8                       OCTET STRING(SIZE(1)),
+    n-1-pucch3                  INTEGER(0..4095),
+    skip9                       BIT STRING(SIZE(12)),
+
+    n-4-pucch                   INTEGER(0..15),
+    n-2-pucch                   INTEGER(0..15),
+
+    skip10                      BIT STRING(SIZE(4)),
+    n-3-pucch                   INTEGER(0..3),
+    skip11                      BIT STRING(SIZE(2)),
+
+    n-pucch-4-rb                INTEGER(0..15),
+    n-5-cdm-idx                 INTEGER(0..15),
+    n-5-pucch                   INTEGER(0..15),
+    skip12                      BIT STRING(SIZE(4)),
+
+    cc-max-tx-power             INTEGER(0..255),
+    total-max-tx-power          INTEGER(0..255),
+    chain0-mtp1                 INTEGER(0..255),
+    chain1-mtp1                 INTEGER(0..255),
+    afc-rx-freq-error           INTEGER(0..65535),
+
+    skip13                      OCTET STRING(SIZE(2))
+}
+Scheduling-request-present ::=ENUMERATED
+{
+    not-present                 (0),
+    present                     (1)
+}
+
+--PUSCH
+LTE-ML1-GM-TX-Report-R-H-PUSCH ::=SEQUENCE
+{
+    eib-index                   INTEGER(0..1),
+    modulation-type             Modulation-type,
+    skip15                      BIT STRING(SIZE(2)),
+    retransmission-index        INTEGER(0..7),
+    harq-id                     INTEGER(0..7),
+    redundancy-version          INTEGER(0..3),
+    ack-nak-length              INTEGER(0..7),
+    skip16                      BIT STRING(SIZE(2)),
+    transport-block-size        INTEGER(0..4095),
+    skip17                      BIT STRING(SIZE(1)),
+
+    skip18                      BIT STRING(SIZE(13)),--include not sure
+    mcs-index                   INTEGER(0..31),
+    number-of-resource-blocks   INTEGER(0..127),
+    resource-block-start        INTEGER(0..127),
+
+    num-antenna                 INTEGER(0..3),
+    skip19                      BIT STRING(SIZE(3)),
+    beta-pusch                  INTEGER(0..8191),
+    skip20                      BIT STRING(SIZE(14)),
+
+    harq-ack-offset-index       INTEGER(0..15),
+    freq-hopping-flag           Freq-hopping-flag,
+    cyclic-shift-dmrs           INTEGER(0..7),
+
+    cqi-offset-index            INTEGER(0..15),
+    harq-ack-offset-x           INTEGER(0..15),
+
+    tti-bundle-index            Tti-bundle-index,
+    skip21                      BIT STRING(SIZE(6)),
+    n-drms                      INTEGER(0..7),
+    pusch-hopping-payload       INTEGER(0..3),
+    ri-offset-index             INTEGER(0..15),
+
+    cc-max-tx-power             INTEGER(0..255),
+    total-max-tx-power          INTEGER(0..255),
+    chain0-mtp1                 INTEGER(0..255),
+    chain1-mtp1                 INTEGER(0..255),
+    afc-rx-freq-error           INTEGER(0..65535),
+
+    skip22                      OCTET STRING(SIZE(2))
+}
+Modulation-type ::=ENUMERATED
+{
+    unknown0    (0),
+    qpsk        (1),
+    i16qam       (2),
+    i64qam       (3),
+    i256qam       (4),
+    unknown5    (5),
+    unknown6    (6),
+    unknown7    (7)
+}
+Freq-hopping-flag::=ENUMERATED
+{
+    disabled        (0),
+    enabled         (1)
+}
+Tti-bundle-index ::=ENUMERATED
+{
+    invalid         (0),
+    valid           (1)
+}
+END

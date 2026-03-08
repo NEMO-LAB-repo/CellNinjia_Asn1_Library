@@ -1,0 +1,64 @@
+NR5G-RLC-DL-Stats DEFINITIONS ::= BEGIN
+
+--S_H--
+NR5G-RLC-DL-Stats-S-H  ::= SEQUENCE
+{
+    version                 INTEGER (0..4294967295),
+    num-rb               INTEGER (0..255),
+    reason                INTEGER (0..255),
+    num-fc-down-commands INTEGER (0..4294967295),
+    num-fc-up-commands   INTEGER (0..4294967295),
+    num-rlf-issued       INTEGER (0..4294967295),
+    num-scell-ta-start   INTEGER (0..4294967295),
+    num-scell-ta-stop    INTEGER (0..4294967295),
+    num-scell-fc-start   INTEGER (0..4294967295),
+    num-scell-fc-stop    INTEGER (0..4294967295),
+    num-rf-available     INTEGER (0..4294967295),
+    num-fc-rx-win        INTEGER (0..4294967295),
+    last-rlf             INTEGER (0..4294967295),
+    num-fc-level1-inc-segs-dropped-0 INTEGER (0..4294967295),
+    num-fc-level1-inc-segs-dropped-1 INTEGER (0..4294967295),
+    num-fc-level1-inc-segs-dropped-2 INTEGER (0..4294967295),
+    num-fc-level1-inc-segs-dropped-3 INTEGER (0..4294967295),
+    num-fc-level1-history-index INTEGER (0..4294967295),
+    num-fc-shutdown-inc-segs-dropped INTEGER (0..4294967295),
+    skip0                   OCTET STRING (SIZE(2))
+}
+
+--RB--
+NR5G-RLC-DL-Stats-RB ::= SEQUENCE
+{
+    rb-config-index         INTEGER (0..255),
+    rb-mode                 INTEGER (0..255),
+    num-rlc-meta            INTEGER (0..4294967295),
+    num-data-pdu            INTEGER (0..4294967295),
+    num-status-rxed         INTEGER (0..4294967295),
+    num-invalid-pdus        INTEGER (0..4294967295),
+    num-retx-pdu            INTEGER (0..4294967295),
+    num-duplicate-pdu       INTEGER (0..4294967295),
+    num-dropped-pdu         INTEGER (0..4294967295),
+    num-segment-join        INTEGER (0..4294967295),
+    num-segment-collapse    INTEGER (0..4294967295),
+    num-status-trigger      INTEGER (0..4294967295),
+    num-status-update       INTEGER (0..4294967295),
+    num-status-ota          INTEGER (0..4294967295),
+    num-status-pdu-drop     INTEGER (0..4294967295),
+    num-reassembly-expired  INTEGER (0..4294967295),
+    num-reassembly-start    INTEGER (0..4294967295),
+    num-missed-um-pdu       INTEGER (0..4294967295),
+    num-meta-overlap        INTEGER (0..4294967295),
+    num-status-trigger-ack-sn-only INTEGER (0..4294967295),
+    num-status-trigger-nack-list   INTEGER (0..4294967295),
+    num-status-update-ack-sn-only  INTEGER (0..4294967295),
+    num-status-update-nack-list    INTEGER (0..4294967295),
+    num-status-ackd              INTEGER (0..4294967295),
+    num-status-nack-lists        INTEGER (0..4294967295),
+    rlc-data-bytes              INTEGER (0..4294967295),
+    skip0                   OCTET STRING (SIZE(2))
+}
+
+
+
+
+
+END

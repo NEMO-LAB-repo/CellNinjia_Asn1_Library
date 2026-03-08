@@ -1,0 +1,76 @@
+LTE-ML1-Serving-Cell-Measurements-And-Evaluation DEFINITIONS ::=BEGIN
+
+LTE-ML1-Serving-Cell-Measurements-And-Evaluation-S-H ::=SEQUENCE
+{
+    version                                                 INTEGER(0..255),
+    standards-Version                                       INTEGER(0..255),
+    skip0                                                   OCTET STRING(SIZE(2)),
+    e-arfcn                                                 INTEGER(0..4294967295),
+
+    skip1                                                   BIT STRING(SIZE(4)),
+    serving-layer-priority                                  INTEGER(0..7),
+    physicall-cell-id                                       INTEGER(0..511),
+
+    skip2                                                   OCTET STRING(SIZE(2)),
+
+    skip3                                                   BIT STRING(SIZE(21)),
+    measured-rsrp                                           INTEGER(0..2047),--need process
+
+    skip4                                                   BIT STRING(SIZE(21)),
+    average-rsrp                                            INTEGER(0..2047),--need process
+
+    skip5                                                   BIT STRING(SIZE(2)),
+    average-rsrq                                            INTEGER(0..1023),--need process
+    skip17                                                  BIT STRING(SIZE(10)),
+    measured-eseq                                           INTEGER(0..1023),--need process
+
+    skip6                                                   BIT STRING(SIZE(12)),
+    measured-rssi                                           INTEGER(0..1023),--need process
+    skip7                                                   BIT STRING(SIZE(4)),
+    p-max                                                   INTEGER(0..63),
+
+    skip8                                                   OCTET STRING(SIZE(2)),
+
+    s-non-intra-search                                      INTEGER(0..7),
+    s-intra-search                                          INTEGER(0..63),
+    consecutive-drx-cycles                                  INTEGER(0..1),
+    skip9                                                   BIT STRING(SIZE(4)),
+    srxlev                                                  INTEGER(0..127),--need process
+    skip10                                                  BIT STRING(SIZE(3)),
+
+    skip11                                                  BIT STRING(SIZE(7)),
+    measurement-rules                                       Measurement-rules,
+    measurement-rules-updated                               Measurement-rules-updated,
+    skip12                                                  BIT STRING(SIZE(12)),
+
+    non-intra-search                                        INTEGER(0..15),
+    skip13                                                  BIT STRING(SIZE(1)),
+    intra-search                                            INTEGER(0..31),
+    skip14                                                  BIT STRING(SIZE(1)),
+    squal                                                   INTEGER(0..63),
+    skip15                                                  BIT STRING(SIZE(3)),
+    qqualmin                                                INTEGER(0..15),
+
+    skip16                                                  OCTET STRING(SIZE(1))
+}
+
+Measurement-rules ::=ENUMERATED
+{
+    unknown0                                                (0),
+    unknown1                                                (1),
+    unknown2                                                (2),
+    unknown3                                                (3),
+    unknown4                                                (4),
+    unknown5                                                (5),
+    unknown6                                                (6),
+    unknown7                                                (7),
+    unknown8                                                (8),
+    unknown9                                                (9)
+}
+
+Measurement-rules-updated ::=ENUMERATED
+{
+    false                                                   (0),
+    true                                                    (1)
+}
+END

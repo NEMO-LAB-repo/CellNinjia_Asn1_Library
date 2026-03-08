@@ -1,0 +1,105 @@
+LTE-RRC-Supported-CA-Combos DEFINITIONS ::=BEGIN
+
+LTE-RRC-Supported-CA-Combos-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+    versions-num-conbos          INTEGER (0..255)
+}
+
+LTE-RRC-Supported-CA-Combos-CA-H ::=SEQUENCE
+{
+    num-band                     INTEGER (0..255)
+}
+
+LTE-RRC-Supported-CA-Combos-Bw-Class ::=SEQUENCE
+{
+    band                         INTEGER (0..65535),
+
+    skip0                        BIT STRING(SIZE(5)),
+    dl-bw-class                  Dl-Bw-Class,
+
+    skip1                        BIT STRING(SIZE(5)),
+    ul-bw-class                  Dl-Bw-Class,
+    
+    skip2                        BIT STRING(SIZE(2)),
+    dl-max-antennas-index        Dl-Max-Antennas-Index,
+
+    skip3                        BIT STRING(SIZE(5)),
+    ul-max-antennas-index        Ul-Max-Antennas-Index,
+
+    skip4                        BIT STRING(SIZE(5)),
+    ul-qam-cap-index             Ul-Qam-Cap-Index
+}
+
+-- Dl-Bw-Class used for both dl-bw-class and ul-bw-class
+Dl-Bw-Class ::=ENUMERATED
+{
+    cA-BW-CLASS-NONE            (0),--guess
+    cA-BW-CLASS-A               (1),
+    cA-BW-CLASS-B               (2),
+    cA-BW-CLASS-C               (3),
+    cA-BW-CLASS-D               (4),
+    cA-BW-CLASS-E               (5),
+    cA-BW-CLASS-F               (6),
+    cA-BW-CLASS-G               (7)--guess
+}
+
+Dl-Max-Antennas-Index ::=ENUMERATED
+{
+    cLASS-INVALID-INDEX          (0),--guess
+    cLASS-A-1-ANT                (1),--guess
+    cLASS-A-2-ANT                (2),
+    cLASS-A-4-ANT                (3),
+    cLASS-BC-1-1-ANT             (4),--guess
+    unknown5                     (5),
+    cLASS-BC-2-2-ANT             (6),
+    unknown7                     (7),
+    cLASS-BC-4-4-ANT             (8),
+    unknown9                     (9),
+    unknown10                    (10),
+    unknown11                    (11),
+    cLASS-D-2-2-2-ANT            (12),
+    unknown13                    (13),
+    unknown14                    (14),
+    cLASS-D-4-4-4-ANT            (15),
+    unknown16                    (16),
+    unknown17                    (17),
+    unknown18                    (18),
+    unknown19                    (19),
+    cLASS-E-2-2-2-ANT            (20),
+    unknown21                    (21),
+    unknown22                    (22),
+    unknown23                    (23),
+    cLASS-E-4-4-4-ANT            (24),
+    unknown25                    (25),
+    unknown26                    (26),
+    unknown27                    (27),
+    unknown28                    (28),
+    unknown29                    (29),
+    unknown30                    (30),
+    unknown31                    (31),
+    unknown32                    (32),
+    unknown33                    (33),
+    unknown34                    (34),
+    cLASS-F-4-4-4-ANT            (35)
+}
+
+Ul-Max-Antennas-Index ::=ENUMERATED
+{
+    cLASS-INVALID-INDEX          (0),
+    cLASS-A-1-ANT                (1),
+    cLASS-A-2-ANT                (2),--guess
+    cLASS-A-4-ANT                (3),--guess
+    cLASS-BC-1-1-ANT             (4)
+}
+
+Ul-Qam-Cap-Index ::=ENUMERATED
+{
+    uL-INVALID-QAM-CAP           (0),
+    unknown1                     (1),
+    uL-Class-A-256-QAM-CAP       (2),
+    unknown2                     (3),
+    unknown3                     (4),
+    uL-Class-BC-256-256-QAM-CAP  (5)
+}
+END

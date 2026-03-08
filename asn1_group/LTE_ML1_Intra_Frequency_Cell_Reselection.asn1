@@ -1,0 +1,105 @@
+LTE-ML1-Intra-Frequency-Cell-Reselection DEFINITIONS ::=BEGIN
+
+LTE-ML1-Intra-Frequency-Cell-Reselection-S-H ::=SEQUENCE
+{
+    version                      INTEGER (0..255),
+    number-of-subpackets         INTEGER (0..255),
+    skip0                        OCTET STRING(SIZE(2))
+}
+
+LTE-ML1-Intra-Frequency-Cell-Reselection-Payload-H ::=SEQUENCE
+{
+    sub-pkt-id                   INTEGER (0..255),
+    sub-pkt-version              INTEGER (0..255),
+    sub-pkt-size                 INTEGER (0..255),
+    skip1                        OCTET STRING(SIZE(1))
+}
+
+
+--pkt 10
+LTE-ML1-Intra-Frequency-Cell-Reselection-pkt-10 ::=SEQUENCE
+{
+    idle-Mode-Resel-Meas-Common     Idle-Mode-Resel-Meas-Common
+}
+Idle-Mode-Resel-Meas-Common ::=SEQUENCE
+{
+    eARFCN                       INTEGER (0..4294967295),
+
+    skip2                        BIT STRING(SIZE(6)),
+    ue-mobility-state            INTEGER(0..1),
+    physicall-cell-id            INTEGER(0..511),
+
+    priority                     INTEGER(0..255),
+
+    skip3                        OCTET STRING(SIZE(1))
+}
+
+--pkt 5
+LTE-ML1-Intra-Frequency-Cell-Reselection-pkt-5 ::=SEQUENCE
+{
+    idle-Meas-Serving-Freq-Resel-Info     Idle-Meas-Serving-Freq-Resel-Info
+}
+Idle-Meas-Serving-Freq-Resel-Info ::=SEQUENCE
+{
+    standards-version            INTEGER(0..255),
+    skip4                        OCTET STRING(SIZE(3)),
+
+    serving-cell-priority        INTEGER(0..15),
+    s-non-intra-search           INTEGER(0..15),
+
+    thresh-serving-low           INTEGER(0..15),
+    skip5                        BIT STRING(SIZE(24)),
+
+    s-non-intra-search-q         INTEGER(0..63),
+    thresh-serving-low-q         INTEGER(0..63),
+
+    skip6                        OCTET STRING(SIZE(2))
+}
+
+--pkt 11
+LTE-ML1-Intra-Frequency-Cell-Reselection-pkt-11 ::=SEQUENCE
+{
+    idle-Mode-Resel-Meas-LTE-Frequency     Idle-Mode-Resel-Meas-LTE-Frequency
+}
+Idle-Mode-Resel-Meas-LTE-Frequency ::=SEQUENCE
+{
+    skip7                        OCTET STRING(SIZE(3)),
+    instance                     INTEGER(0..255),
+    number-of-layers             INTEGER(0..255),
+    treselection                 INTEGER(0..255),
+    skip8                        OCTET STRING(SIZE(2))
+}
+--pkt 11 layer
+LTE-ML1-Intra-Frequency-Cell-Reselection-pkt-11-layer ::=SEQUENCE
+{
+    eARFCN                       INTEGER (0..4294967295),
+
+    qoffset-frequency            BIT STRING(SIZE(5)),
+    treselection                 INTEGER (0..7),
+
+    number-of-cells              INTEGER(0..255),
+
+    thresh-x-high                INTEGER(0..255),
+
+    thresh-x-low                 INTEGER(0..255),
+
+    priority                     INTEGER(0..255),
+
+    skip9                        OCTET STRING(SIZE(3))
+}
+
+--pkt 11 layer cell no idea now
+LTE-ML1-Intra-Frequency-Cell-Reselection-pkt-11-layer-cell ::=SEQUENCE
+{
+    skip10                      BIT STRING(SIZE(24)),
+    physical-cell-id            INTEGER(0..255),
+
+    decimal-part                OCTET STRING(SIZE(6)),
+
+    treselection                INTEGER(0..65535),
+    skip11                      OCTET STRING(SIZE(2)),
+    rank-integer                INTEGER(0..255),
+    rank-fractional             INTEGER(0..255)
+}
+
+END

@@ -1,0 +1,81 @@
+LTE-ML1-DCI-Information-Report-v48 DEFINITIONS ::=BEGIN
+
+LTE-ML1-DCI-Information-Report-v48-S-H ::=SEQUENCE
+{
+    version                 INTEGER (0..255),
+    num-of-record           INTEGER (0..63),
+    duplexmode              DuplexMode,
+    skip0                   BIT STRING(SIZE(17))
+}
+
+DuplexMode ::= ENUMERATED
+{
+    fdd     (0),
+    unknown (1)
+}
+
+LTE-ML1-DCI-Information-Report-v48-R-H ::=SEQUENCE
+{
+    num-ul-grant-info      INTEGER(0..3),
+    sub-frame-number       INTEGER(0..15),
+    sys-frame-number       INTEGER(0..1023)
+}
+
+LTE-ML1-DCI-Information-Report-v48-R-UL ::=SEQUENCE
+{
+    skip1                  OCTET STRING(SIZE(5)),
+    mcs-index              INTEGER(0..31),
+    rendundancy-version    INTEGER(0..3),
+    skip2                  BIT STRING(SIZE(3)),
+
+    tbs-index              TBS-Index,
+
+    skip3                  BIT STRING(SIZE(9)),
+
+    number-of-resource-blocks       INTEGER(0..127),
+    skip4                  OCTET STRING(SIZE(117))
+}
+TBS-Index ::=ENUMERATED
+{
+    tBS-INDEX-0                     (0),
+    tBS-INDEX-1                     (1),
+    tBS-INDEX-2                     (2),
+    tBS-INDEX-3                     (3),
+    tBS-INDEX-4                     (4),
+    tBS-INDEX-5                     (5),
+    tBS-INDEX-6                     (6),
+    tBS-INDEX-7                     (7),
+    tBS-INDEX-8                     (8),
+    tBS-INDEX-9                     (9),
+    tBS-INDEX-10                     (10),
+    tBS-INDEX-11                     (11),
+    tBS-INDEX-12                     (12),
+    tBS-INDEX-13                     (13),
+    tBS-INDEX-14                     (14),
+    tBS-INDEX-15                     (15),
+    tBS-INDEX-16                     (16),
+    tBS-INDEX-17                     (17),
+    tBS-INDEX-18                     (18),
+    tBS-INDEX-19                     (19),
+    tBS-INDEX-20                     (20),
+    tBS-INDEX-21                     (21),
+    tBS-INDEX-22                     (22),
+    tBS-INDEX-23                     (23),
+    tBS-INDEX-24                     (24),
+    tBS-INDEX-25                     (25),
+    tBS-INDEX-26                     (26),
+    tBS-INDEX-26-A-unknown                     (27),
+    tBS-INDEX-27                     (28),
+    tBS-INDEX-28                     (29),
+    tBS-INDEX-29                     (30),
+    tBS-INDEX-30                     (31),
+    tBS-INDEX-31                     (32),
+    tBS-INDEX-32                     (33),
+    tBS-INDEX-32-A                   (34),
+    tBS-INDEX-33                     (35),
+    unknown-36                       (36),
+    unknown-37                       (37),
+    unknown-38                       (38)
+}
+
+END

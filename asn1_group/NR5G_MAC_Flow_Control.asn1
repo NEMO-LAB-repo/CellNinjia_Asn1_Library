@@ -1,0 +1,75 @@
+NR5G-MAC-Flow-Control DEFINITIONS ::= BEGIN
+
+-- S-H -- 
+NR5G-MAC-Flow-Control-S-H ::= SEQUENCE
+{
+    minor-version                INTEGER (0..65535),
+    major-version                INTEGER (0..65535),
+    skip0                        OCTET STRING (SIZE(11)),
+    num-records                INTEGER (0..255)
+}
+
+--R-H--
+NR5G-MAC-Flow-Control-R-H ::= SEQUENCE
+{
+    skip0                        BIT STRING (SIZE(6)),
+    fc-reason                    FC-Reason
+}
+
+FC-Reason ::= ENUMERATED 
+{
+    ul-backoff              (0),
+    pucch-backoff           (1),
+    mtpl                    (2)
+}
+
+--Record --
+--MTPL--
+NR5G-MAC-Flow-Control-MTPL ::= SEQUENCE
+{
+    skip0                        OCTET STRING (SIZE(5)),
+    initial-p-backoff          INTEGER (0..255),
+    skip1                        OCTET STRING (SIZE(3)),
+    p-min                       INTEGER (0..255),
+    skip2                        OCTET STRING (SIZE(1)),
+    t-up                      INTEGER (0..255),
+    skip3                        OCTET STRING (SIZE(1)),
+    t-down                    INTEGER (0..255),
+    skip4                        OCTET STRING (SIZE(1)),
+    step-timer                INTEGER (0..65535),
+    skip5                        OCTET STRING (SIZE(10))
+}
+
+--PUCCH-backoff--
+NR5G-MAC-Flow-Control-PUCCH-BACKOFF ::= SEQUENCE
+{
+    skip0                        OCTET STRING (SIZE(5)),
+    pucch-period               INTEGER (0..255),
+    skip1                        OCTET STRING (SIZE(1)),
+    t-up                     INTEGER (0..255),
+    skip2                        OCTET STRING (SIZE(1)),
+    t-down                   INTEGER (0..255),
+    skip3                        OCTET STRING (SIZE(1)),
+    step-timer               INTEGER (0..65535),
+    skip4                        OCTET STRING (SIZE(14))
+}
+
+--UL-backoff--
+NR5G-MAC-Flow-Control-UL-BACKOFF ::= SEQUENCE
+{
+    skip0                        OCTET STRING (SIZE(9)),
+    conigured-throttle       INTEGER (0..255),
+    skip1                        OCTET STRING (SIZE(1)),
+    curret-throttle         INTEGER (0..255),
+    skip2                        OCTET STRING (SIZE(3)),
+    cool-down-time       INTEGER (0..255),
+    skip3                        OCTET STRING (SIZE(3)),
+    step-timer           INTEGER (0..65535),
+    skip4                        OCTET STRING (SIZE(6))
+}
+
+
+
+
+
+END
