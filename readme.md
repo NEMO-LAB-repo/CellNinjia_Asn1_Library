@@ -2,6 +2,8 @@
 
 A shared C library for decoding Qualcomm modem diagnostic log packets (LTE and NR5G) using ASN.1-defined message structures. 
 
+> **📌 If you use any code from this repository, please cite our SenSys '26 paper.** See [Citation](#-citation) below.
+
 ## Building
 
 ### Prerequisites
@@ -139,6 +141,35 @@ In [asn1_group/host.c](asn1_group/host.c), add a dispatch entry that maps the lo
 | 38 | NR5G ML1 Searcher Conn Eval | 0xB96F | 131075 |
 | 39 | NR5G ML1 Antenna Switch Diversity | 0xB98F | 131074 |
 | 40 | NR5G ML1 Search HO Acq Confirm | 0xB9BF | 131079 |
+
+---
+
+## 📝 Citation
+
+If you use this library, or any code from this repository, in your work, please cite the following paper:
+
+> Yuxin Liu, Tianyang Zhang, Qiang Wu, Ju Ren, Kyle Jamieson, and Yaxiong Xie. 2026. **RAN-Aware Delay Compensation for Delay-Sensitive Protocols in Cellular Networks.** In *Proceedings of the 2026 ACM/IEEE International Conference on Embedded Artificial Intelligence and Sensing Systems (SenSys '26)*. ACM, 1144–1157. https://doi.org/10.1145/3774906.3802791
+
+```bibtex
+@inproceedings{liu2026ranaware,
+  author    = {Liu, Yuxin and Zhang, Tianyang and Wu, Qiang and Ren, Ju and Jamieson, Kyle and Xie, Yaxiong},
+  title     = {{RAN}-Aware Delay Compensation for Delay-Sensitive Protocols in Cellular Networks},
+  booktitle = {Proceedings of the 2026 ACM/IEEE International Conference on Embedded Artificial Intelligence and Sensing Systems},
+  series    = {SenSys '26},
+  pages     = {1144--1157},
+  year      = {2026},
+  publisher = {ACM},
+  address   = {New York, NY, USA},
+  doi       = {10.1145/3774906.3802791},
+  url       = {https://doi.org/10.1145/3774906.3802791}
+}
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
 
 ---
 
